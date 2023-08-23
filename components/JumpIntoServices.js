@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   seeAllText: {
-    fontSize: 12,
+    fontSize: 10,
     color: "#b2b2b2",
   },
   cardsContainer: {
