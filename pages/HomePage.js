@@ -2,6 +2,7 @@ import React from "react";
 import { StatusBar, StyleSheet, View } from "react-native";
 import LocationComponent from "../components/LocationComponent";
 import SearchBar from "../components/SearchBar";
+import WelcomeUser from "../components/WelcomeUser";
 
 const HomePage = () => {
   return (
@@ -9,6 +10,7 @@ const HomePage = () => {
       <StatusBar barStyle="light-content" backgroundColor={"#10472f"} />
       <LocationComponent />
       <SearchBar />
+      <WelcomeUser />
     </View>
   );
 };

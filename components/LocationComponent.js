@@ -12,7 +12,7 @@ const LocationComponent = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Image
-        source={require("../images/travel-map-earth-2 (1).png")}
+        source={require("../images/travel-map-earth-2-white.png")}
         style={styles.icon}
       />
       <View style={styles.textContainer}>
