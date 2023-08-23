@@ -31,10 +31,10 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center", // Change this to center horizontally
+    justifyContent: "center",
     padding: 10,
-    backgroundColor: "darkgreen",
-    marginBottom: 10, // Add margin at the bottom
+    backgroundColor: "#10472f",
+    marginBottom: 10,
   },
   icon: {
     width: 20,
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
   button: {
-    backgroundColor: "darkgreen",
+    backgroundColor: "#10472f",
     paddingHorizontal: 6,
   },
   buttonText: {
