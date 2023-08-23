@@ -1,5 +1,6 @@
 import React from "react";
 import { StatusBar, StyleSheet, View } from "react-native";
+import JumpIntoServices from "../components/JumpIntoServices";
 import LocationComponent from "../components/LocationComponent";
 import SearchBar from "../components/SearchBar";
 import WelcomeUser from "../components/WelcomeUser";
@@ -11,6 +12,7 @@ const HomePage = () => {
       <LocationComponent />
       <SearchBar />
       <WelcomeUser />
+      <JumpIntoServices />
     </View>
   );
 };
