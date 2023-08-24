@@ -1,12 +1,13 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import AccountInfoPage from "./pages/AccountInfoPage";
+import AccountPage from "./pages/AccountPage";
 
 export default function App() {
   return (
     <View style={styles.container}>
       {/* <HomePage /> */}
-      <AccountInfoPage />
+      {/* <AccountInfoPage /> */}
+      <AccountPage />
     </View>
   );
 }

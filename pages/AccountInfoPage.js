@@ -1,7 +1,7 @@
 import React from "react";
 import { StatusBar, View } from "react-native";
-import AccountInfoBody from "../components/AccountInfoPage/AccountInfoBody";
-import AccountInfoHeader from "../components/AccountInfoPage/AccountInfoHeader";
+import AccountInfoBody from "../components/AccountInfoPageComponents/AccountInfoBody";
+import AccountInfoHeader from "../components/AccountInfoPageComponents/AccountInfoHeader";
 
 const AccountInfoPage = () => {
   return (
