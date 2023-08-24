@@ -36,9 +36,7 @@ const HomePage = () => {
         />
         {!isLocationEnabled && <LocationComponent />}
         <SearchBar />
-
         {isLoggedIn ? <LoggedInUser /> : <LoggedOutUser />}
-
         <JumpIntoServices />
         <NearbyHospitals />
         <CrowdfundingComponent />
