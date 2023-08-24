@@ -1,13 +1,14 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import AccountPage from "./pages/AccountPage";
+import CrowdFundingApplicationPage from "./pages/CrowdFundingApplicationPage";
 
 export default function App() {
   return (
     <View style={styles.container}>
       {/* <HomePage /> */}
       {/* <AccountInfoPage /> */}
-      <AccountPage />
+      {/* <AccountPage /> */}
+      <CrowdFundingApplicationPage />
     </View>
   );
 }
