@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
   },
   leftText: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: "bold",
   },
   rightText: {
@@ -67,8 +67,8 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   card: {
-    width: 80,
-    height: 80,
+    width: 75,
+    height: 75,
     justifyContent: "flex-end",
     alignItems: "center",
     borderRadius: 8,

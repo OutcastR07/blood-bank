@@ -5,6 +5,7 @@ import JumpIntoServices from "../components/JumpIntoServices";
 import LocationComponent from "../components/LocationComponent";
 import NearbyHospitals from "../components/NearbyHospitals";
 import SearchBar from "../components/SearchBar";
+import WaysToUseBloodBank from "../components/WaysToUseBloodBank";
 import WelcomeUser from "../components/WelcomeUser";
 
 const HomePage = () => {
@@ -18,6 +19,7 @@ const HomePage = () => {
         <JumpIntoServices />
         <NearbyHospitals />
         <CrowdfundingComponent />
+        <WaysToUseBloodBank />
       </View>
     </ScrollView>
   );

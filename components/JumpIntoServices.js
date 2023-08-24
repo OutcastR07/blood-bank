@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   jumpText: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: "bold",
   },
   seeAllText: {

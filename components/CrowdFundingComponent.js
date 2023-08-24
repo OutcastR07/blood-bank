@@ -1,7 +1,7 @@
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 
-const CrowdfundingComponent = () => {
+const CrowdFundingComponent = () => {
   return (
     <View style={styles.container}>
       <View style={styles.textContainer}>
@@ -36,7 +36,6 @@ const CrowdfundingComponent = () => {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -44,13 +43,13 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   textContainer: {
-    flex: 1,
     justifyContent: "flex-start",
     alignItems: "flex-start",
     marginTop: 10,
+    marginRight: 25,
   },
   text: {
-    fontSize: 24,
+    fontSize: 18,
     fontWeight: "bold",
   },
   imageContainer: {
@@ -64,9 +63,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   imageCard: {
-    width: 85,
-    height: 60,
-    borderRadius: 5,
+    width: 100,
+    height: 40,
+    borderRadius: 10,
     padding: 35,
     borderWidth: 1,
     borderColor: "#d4d4d6",
@@ -84,4 +83,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CrowdfundingComponent;
+export default CrowdFundingComponent;
