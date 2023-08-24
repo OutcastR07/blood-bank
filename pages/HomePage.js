@@ -1,5 +1,6 @@
 import React from "react";
-import { StatusBar, StyleSheet, View } from "react-native";
+import { ScrollView, StatusBar, StyleSheet, View } from "react-native";
+import CrowdfundingComponent from "../components/CrowdFundingComponent";
 import JumpIntoServices from "../components/JumpIntoServices";
 import LocationComponent from "../components/LocationComponent";
 import NearbyHospitals from "../components/NearbyHospitals";
@@ -8,14 +9,17 @@ import WelcomeUser from "../components/WelcomeUser";
 
 const HomePage = () => {
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor={"#10472f"} />
-      <LocationComponent />
-      <SearchBar />
-      <WelcomeUser />
-      <JumpIntoServices />
-      <NearbyHospitals />
-    </View>
+    <ScrollView>
+      <View style={styles.container}>
+        <StatusBar barStyle="light-content" backgroundColor={"#10472f"} />
+        <LocationComponent />
+        <SearchBar />
+        <WelcomeUser />
+        <JumpIntoServices />
+        <NearbyHospitals />
+        <CrowdfundingComponent />
+      </View>
+    </ScrollView>
   );
 };
 

@@ -3,7 +3,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 const NearbyHospitals = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.leftText}>Nearby Hospitals</Text>
         <TouchableOpacity>
@@ -40,6 +40,9 @@ const HospitalCard = ({ name, color }) => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    marginBottom: 12,
+  },
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
