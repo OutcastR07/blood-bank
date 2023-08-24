@@ -8,12 +8,12 @@ const WaysToUseBloodBank = () => {
         <Text style={styles.bold}>Ways to use Blood bank</Text>
       </Text>
       <Image
-        source={require("../images/Bloodbank-Bg.png")}
+        source={require("../../images/Bloodbank-Bg.png")}
         style={styles.image}
         resizeMode="contain"
       />
       <Image
-        source={require("../images/Blood-bank-bg-picture.png")}
+        source={require("../../images/Blood-bank-bg-picture.png")}
         style={styles.overlayImage}
         resizeMode="contain"
       />
@@ -22,7 +22,7 @@ const WaysToUseBloodBank = () => {
         <View style={styles.learnMoreContainer}>
           <Text style={styles.learnMoreText}>Learn more</Text>
           <Image
-            source={require("../images/interface-arrows-right-white.png")}
+            source={require("../../images/interface-arrows-right-white.png")}
             style={styles.arrayIcon}
             resizeMode="contain"
           />

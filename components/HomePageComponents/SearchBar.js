@@ -12,7 +12,7 @@ const SearchBar = () => {
   return (
     <View style={styles.container}>
       <Image
-        source={require("../images/interface-search-circle.png")}
+        source={require("../../images/interface-search-circle.png")}
         style={styles.searchIcon}
       />
       <TextInput
@@ -22,12 +22,12 @@ const SearchBar = () => {
       />
       <TouchableOpacity style={styles.nearbyContainer}>
         <Image
-          source={require("../images/travel-map-location-pin.png")}
+          source={require("../../images/travel-map-location-pin.png")}
           style={styles.locationIcon}
         />
         <Text style={styles.nearbyText}>Nearby</Text>
         <Image
-          source={require("../images/interface-arrows-button-down.png")}
+          source={require("../../images/interface-arrows-button-down.png")}
           style={styles.dropdownIcon}
         />
       </TouchableOpacity>

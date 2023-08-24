@@ -13,19 +13,19 @@ const JumpIntoServices = () => {
       <View style={styles.cardsContainer}>
         <CardItem
           title="Doctors"
-          imageSource={require("../images/doctor.png")}
+          imageSource={require("../../images/doctor.png")}
         />
         <CardItem
           title="Hospitals"
-          imageSource={require("../images/hospital.png")}
+          imageSource={require("../../images/hospital.png")}
         />
         <CardItem
           title="Blood Banks"
-          imageSource={require("../images/blood-bag.png")}
+          imageSource={require("../../images/blood-bag.png")}
         />
         <CardItem
           title="Diagnostic Centers"
-          imageSource={require("../images/diagnostic-center.png")}
+          imageSource={require("../../images/diagnostic-center.png")}
         />
       </View>
     </View>

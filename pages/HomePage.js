@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { ScrollView, StatusBar, StyleSheet, View } from "react-native";
-import CrowdfundingComponent from "../components/CrowdFundingComponent";
-import JumpIntoServices from "../components/JumpIntoServices";
-import LocationComponent from "../components/LocationComponent";
-import LoggedInUser from "../components/LoggedInUser";
-import LoggedOutUser from "../components/LoggedOutUser";
-import NearbyHospitals from "../components/NearbyHospitals";
-import SearchBar from "../components/SearchBar";
-import WaysToUseBloodBank from "../components/WaysToUseBloodBank";
+import CrowdfundingComponent from "../components/HomePageComponents/CrowdFundingComponent";
+import JumpIntoServices from "../components/HomePageComponents/JumpIntoServices";
+import LocationComponent from "../components/HomePageComponents/LocationComponent";
+import LoggedInUser from "../components/HomePageComponents/LoggedInUser";
+import LoggedOutUser from "../components/HomePageComponents/LoggedOutUser";
+import NearbyHospitals from "../components/HomePageComponents/NearbyHospitals";
+import SearchBar from "../components/HomePageComponents/SearchBar";
+import WaysToUseBloodBank from "../components/HomePageComponents/WaysToUseBloodBank";
 
 const HomePage = () => {
   const [isLocationEnabled, setLocationEnabled] = useState(false);
@@ -15,7 +15,7 @@ const HomePage = () => {
 
   useEffect(() => {
     const checkLocationEnabled = () => {
-      const isEnabled = false;
+      const isEnabled = true;
       setLocationEnabled(isEnabled);
     };
 
@@ -23,7 +23,7 @@ const HomePage = () => {
   }, []);
 
   useEffect(() => {
-    const userAuthenticated = true;
+    const userAuthenticated = false;
     setIsLoggedIn(userAuthenticated);
   }, []);
 

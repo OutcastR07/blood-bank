@@ -12,14 +12,12 @@ const LoggedInUser = () => {
         <View style={styles.availableContainer}>
           <Text style={styles.availableText}>We are available</Text>
           <Image
-            source={require("../images/interface-arrows-right-white.png")}
+            source={require("../../images/interface-arrows-right-white.png")}
             style={styles.arrowIcon}
           />
         </View>
       </View>
-      <View style={styles.circle}>
-        {/* You can add content inside the circle, like an icon */}
-      </View>
+      <View style={styles.circle}></View>
     </View>
   );
 };

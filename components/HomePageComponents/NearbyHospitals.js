@@ -31,9 +31,7 @@ const NearbyHospitals = () => {
 const HospitalCard = ({ name, color }) => {
   return (
     <View style={styles.hospitalCardContainer}>
-      <View style={[styles.card, { backgroundColor: "black" }]}>
-        {/* Hospital card content */}
-      </View>
+      <View style={[styles.card, { backgroundColor: "black" }]}></View>
       <Text style={styles.hospitalName}>{name}</Text>
     </View>
   );

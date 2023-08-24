@@ -12,7 +12,7 @@ const CrowdFundingComponent = () => {
         <View style={styles.imageCardContainer}>
           <View style={styles.imageCard}>
             <Image
-              source={require("../images/fund.png")}
+              source={require("../../images/fund.png")}
               style={styles.image}
               resizeMode="center"
             />
@@ -22,7 +22,7 @@ const CrowdFundingComponent = () => {
         <View style={styles.imageCardContainer}>
           <View style={[styles.imageCard, { backgroundColor: "#f8fdff" }]}>
             <Image
-              source={require("../images/patient.png")}
+              source={require("../../images/patient.png")}
               style={styles.image}
               resizeMode="center"
             />
