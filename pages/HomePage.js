@@ -37,7 +37,6 @@ const HomePage = () => {
         {!isLocationEnabled && <LocationComponent />}
         <SearchBar />
 
-        {/* Conditionally render based on user authentication */}
         {isLoggedIn ? <LoggedInUser /> : <LoggedOutUser />}
 
         <JumpIntoServices />
