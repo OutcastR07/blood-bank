@@ -17,6 +17,17 @@ const WaysToUseBloodBank = () => {
         style={styles.overlayImage}
         resizeMode="contain"
       />
+      <View style={styles.overlayContainer}>
+        <Text style={styles.overlayText}>Request blood for patient</Text>
+        <View style={styles.learnMoreContainer}>
+          <Text style={styles.learnMoreText}>Learn more</Text>
+          <Image
+            source={require("../images/interface-arrows-right-white.png")}
+            style={styles.arrayIcon}
+            resizeMode="contain"
+          />
+        </View>
+      </View>
     </View>
   );
 };
@@ -24,8 +35,8 @@ const WaysToUseBloodBank = () => {
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: 16,
-    marginTop: 12,
-    marginBottom: 12,
+    marginTop: 14,
+    marginBottom: 32,
     position: "relative",
   },
   boldText: {
@@ -48,6 +59,33 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 14,
     borderBottomLeftRadius: 14,
     overflow: "hidden",
+  },
+  overlayContainer: {
+    position: "absolute",
+    right: 0,
+    bottom: 0,
+    width: "40%",
+    height: 100,
+    padding: 12,
+  },
+  overlayText: {
+    fontSize: 14,
+    fontWeight: "bold",
+    marginBottom: 8,
+    color: "white",
+  },
+  learnMoreContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  learnMoreText: {
+    fontSize: 12,
+    marginRight: 5,
+    color: "white",
+  },
+  arrayIcon: {
+    width: 12,
+    height: 12,
   },
 });
 
