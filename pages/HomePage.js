@@ -3,13 +3,15 @@ import { ScrollView, StatusBar, StyleSheet, View } from "react-native";
 import CrowdfundingComponent from "../components/CrowdFundingComponent";
 import JumpIntoServices from "../components/JumpIntoServices";
 import LocationComponent from "../components/LocationComponent";
+import LoggedInUser from "../components/LoggedInUser";
+import LoggedOutUser from "../components/LoggedOutUser";
 import NearbyHospitals from "../components/NearbyHospitals";
 import SearchBar from "../components/SearchBar";
-import UserLoggedIn from "../components/UserLoggedIn";
 import WaysToUseBloodBank from "../components/WaysToUseBloodBank";
 
 const HomePage = () => {
   const [isLocationEnabled, setLocationEnabled] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     const checkLocationEnabled = () => {
@@ -18,6 +20,11 @@ const HomePage = () => {
     };
 
     checkLocationEnabled();
+  }, []);
+
+  useEffect(() => {
+    const userAuthenticated = true;
+    setIsLoggedIn(userAuthenticated);
   }, []);
 
   return (
@@ -29,7 +36,10 @@ const HomePage = () => {
         />
         {!isLocationEnabled && <LocationComponent />}
         <SearchBar />
-        <UserLoggedIn />
+
+        {/* Conditionally render based on user authentication */}
+        {isLoggedIn ? <LoggedInUser /> : <LoggedOutUser />}
+
         <JumpIntoServices />
         <NearbyHospitals />
         <CrowdfundingComponent />

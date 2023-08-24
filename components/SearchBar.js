@@ -53,7 +53,6 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     fontSize: 10,
-    color: "#888",
   },
   nearbyContainer: {
     flexDirection: "row",

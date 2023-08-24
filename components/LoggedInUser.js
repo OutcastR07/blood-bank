@@ -1,7 +1,7 @@
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 
-const UserLoggedIn = () => {
+const LoggedInUser = () => {
   return (
     <View style={styles.cardContainer}>
       <View style={styles.leftContent}>
@@ -72,4 +72,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default UserLoggedIn;
+export default LoggedInUser;

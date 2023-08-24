@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     padding: 12,
   },
   overlayText: {
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: "bold",
     marginBottom: 8,
     color: "white",
