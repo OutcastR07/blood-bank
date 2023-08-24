@@ -1,7 +1,7 @@
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 
-const AccountPageHeader = () => {
+const AccountHeader = () => {
   return (
     <View style={styles.container}>
       <View style={styles.accountInfo}>
@@ -78,4 +78,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AccountPageHeader;
+export default AccountHeader;

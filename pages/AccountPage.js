@@ -1,12 +1,14 @@
 import React from "react";
 import { StatusBar, View } from "react-native";
-import AccountPageHeader from "../components/AccountPageComponents/AccountPageHeader";
+import AccountBody from "../components/AccountPageComponents/AccountBody";
+import AccountHeader from "../components/AccountPageComponents/AccountHeader";
 
 const AccountPage = () => {
   return (
     <View>
       <StatusBar barStyle="dark-content" backgroundColor="white" />
-      <AccountPageHeader />
+      <AccountHeader />
+      <AccountBody />
     </View>
   );
 };
