@@ -1,16 +1,17 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import CrowdFundingApplicationPage from './pages/CrowdFundingApplicationPage';
-import HomePage from './pages/HomePage';
-import HomeNavigation from './navigation/navigation';
-import HospitalDetailPage from './pages/HospitalPage';
-import DiagnosticCenterDetailPage from './pages/DiagnosticCenter';
+import React from "react";
+import { StyleSheet, View } from "react-native";
+import BloodRequestPage from "./pages/BloodRequestPage";
 
 export default function App() {
   return (
     <View style={styles.container}>
+      {/* <AccountPage /> */}
+      {/* <AccountInfoPage /> */}
+      {/* <HomePage /> */}
       {/* <HospitalDetailPage /> */}
-      <DiagnosticCenterDetailPage />
+      {/* <DiagnosticCenterDetailPage /> */}
+      {/* <CrowdFundingApplicationPage /> */}
+      <BloodRequestPage />
     </View>
   );
 }
@@ -18,6 +19,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
 });

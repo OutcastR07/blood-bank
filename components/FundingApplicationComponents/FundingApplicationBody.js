@@ -22,26 +22,22 @@ const FundingApplicationBody = () => {
         <Text style={styles.wordCount}>Minimum 2000 words</Text>
       </View>
 
-      {/* New input field - 100% width */}
       <TextInput
         style={styles.fullWidthInput}
         placeholder="Currently admitted at..."
         placeholderTextColor="grey"
       />
 
-      {/* New input field - 50% width */}
       <TextInput
         style={styles.halfWidthInput}
         placeholder="Required Fund..."
         placeholderTextColor="grey"
       />
 
-      {/* Add Paperworks button */}
       <TouchableOpacity style={styles.addPaperworksButton}>
         <Text style={styles.addPaperworksText}>Add Paperworks</Text>
       </TouchableOpacity>
 
-      {/* Card Container */}
       <View style={styles.cardContainer}>
         <View style={styles.card}></View>
         <View style={styles.card}></View>
@@ -49,7 +45,6 @@ const FundingApplicationBody = () => {
         <View style={styles.card}></View>
       </View>
 
-      {/* Payment Options button */}
       <TouchableOpacity style={styles.paymentOptionsButton}>
         <Text style={styles.paymentOptionsText}>Payment Options</Text>
       </TouchableOpacity>
