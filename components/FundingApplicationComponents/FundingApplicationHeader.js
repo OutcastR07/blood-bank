@@ -49,15 +49,15 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: "bold",
-    marginBottom: 8,
+    marginBottom: 6,
   },
   subtitle: {
-    fontSize: 14,
+    fontSize: 16,
   },
   patientInfoContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 16,
+    marginTop: 6,
     alignItems: "center",
     marginBottom: 8,
   },
@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
     paddingVertical: 2,
     paddingHorizontal: 12,
     marginRight: 8,
+    fontSize: 10,
   },
   selectAgeButton: {
     flexDirection: "row",
@@ -76,28 +77,29 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#ccc",
     borderRadius: 16,
-    paddingVertical: 6,
+    paddingVertical: 8,
     paddingHorizontal: 12,
   },
   selectAgeText: {
     marginRight: 6,
+    fontSize: 10,
   },
   dropdownIcon: {
-    width: 14,
-    height: 14,
+    width: 13,
+    height: 13,
   },
   addPictureButton: {
-    flexDirection: "row",
     alignItems: "center",
     borderColor: "black",
     borderRadius: 16,
     paddingVertical: 6,
     paddingHorizontal: 12,
     backgroundColor: "black",
-    width: "30%",
+    width: "27%",
   },
   addPicture: {
     color: "white",
+    fontSize: 12,
   },
   cardContainer: {
     flexDirection: "row",

@@ -1,13 +1,17 @@
 import React from "react";
-import { StatusBar, View } from "react-native";
+import { ScrollView, StatusBar, View } from "react-native";
+import FundingApplicationBody from "../components/FundingApplicationComponents/FundingApplicationBody";
 import FundingApplicationHeader from "../components/FundingApplicationComponents/FundingApplicationHeader";
 
 const CrowdFundingApplicationPage = () => {
   return (
-    <View>
-      <StatusBar barStyle="dark-content" backgroundColor="white" />
-      <FundingApplicationHeader />
-    </View>
+    <ScrollView>
+      <View>
+        <StatusBar barStyle="dark-content" backgroundColor="white" />
+        <FundingApplicationHeader />
+        <FundingApplicationBody />
+      </View>
+    </ScrollView>
   );
 };
 

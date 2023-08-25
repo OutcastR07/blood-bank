@@ -1,20 +1,17 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import CrowdFundingApplicationPage from './pages/CrowdFundingApplicationPage';
-import HomePage from './pages/HomePage';
-import HomeNavigation from './navigation/navigation';
-import HospitalDetailPage from './pages/HospitalPage';
-import DiagnosticCenterDetailPage from './pages/DiagnosticCenter';
-import DentistDetailPage from './pages/DentistPage';
-import BloodBankDetailPage from './pages/BloodBankDetailPage';
+import BloodRequestPage from './pages/BloodRequestPage';
 
 export default function App() {
   return (
     <View style={styles.container}>
+      {/* <AccountPage /> */}
+      {/* <AccountInfoPage /> */}
+      {/* <HomePage /> */}
       {/* <HospitalDetailPage /> */}
       {/* <DiagnosticCenterDetailPage /> */}
-      {/* <DentistDetailPage /> */}
-      <BloodBankDetailPage />
+      {/* <CrowdFundingApplicationPage /> */}
+      <BloodRequestPage />
     </View>
   );
 }
