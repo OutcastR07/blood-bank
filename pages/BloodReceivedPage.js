@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   hr: {
-    borderBottomColor: "black",
+    borderBottomColor: "#d0d0d1",
     borderBottomWidth: 1,
     width: "100%",
     marginBottom: 16,
@@ -204,8 +204,8 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
   },
   cardImage: {
-    width: 16,
-    height: 16,
+    width: 20,
+    height: 20,
     resizeMode: "cover",
   },
   cardDivider: {
@@ -219,45 +219,45 @@ const styles = StyleSheet.create({
   },
   cardContact: {
     fontWeight: "bold",
-    fontSize: 13,
+    fontSize: 12,
   },
   cardName: {
     fontWeight: "normal",
-    fontSize: 13,
+    fontSize: 12,
   },
   cardMobile: {
     fontWeight: "bold",
-    fontSize: 13,
+    fontSize: 12,
   },
   cardMobileNumber: {
     fontWeight: "normal",
-    fontSize: 13,
+    fontSize: 12,
     color: "#71a9d0",
   },
   cardEmail: {
     fontWeight: "bold",
-    fontSize: 13,
+    fontSize: 12,
   },
   cardEmailAddress: {
     fontWeight: "normal",
-    fontSize: 13,
+    fontSize: 12,
     color: "#71a9d0",
   },
   cardPriority: {
     fontWeight: "bold",
-    fontSize: 13,
+    fontSize: 12,
   },
   cardTime: {
     fontWeight: "normal",
-    fontSize: 13,
+    fontSize: 12,
   },
   cardDate: {
     fontWeight: "bold",
-    fontSize: 13,
+    fontSize: 12,
   },
   cardExactDate: {
     fontWeight: "normal",
-    fontSize: 13,
+    fontSize: 12,
   },
 });
 
