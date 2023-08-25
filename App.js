@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import BloodRequestPage from "./pages/BloodRequestPage";
+import BloodReceivedPage from "./pages/BloodReceivedPage";
 
 export default function App() {
   return (
@@ -11,7 +11,8 @@ export default function App() {
       {/* <HospitalDetailPage /> */}
       {/* <DiagnosticCenterDetailPage /> */}
       {/* <CrowdFundingApplicationPage /> */}
-      <BloodRequestPage />
+      {/* <BloodRequestPage /> */}
+      <BloodReceivedPage />
     </View>
   );
 }
