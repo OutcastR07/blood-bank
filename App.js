@@ -5,12 +5,16 @@ import HomePage from './pages/HomePage';
 import HomeNavigation from './navigation/navigation';
 import HospitalDetailPage from './pages/HospitalPage';
 import DiagnosticCenterDetailPage from './pages/DiagnosticCenter';
+import DentistDetailPage from './pages/DentistPage';
+import BloodBankDetailPage from './pages/BloodBankDetailPage';
 
 export default function App() {
   return (
     <View style={styles.container}>
       {/* <HospitalDetailPage /> */}
-      <DiagnosticCenterDetailPage />
+      {/* <DiagnosticCenterDetailPage /> */}
+      {/* <DentistDetailPage /> */}
+      <BloodBankDetailPage />
     </View>
   );
 }
