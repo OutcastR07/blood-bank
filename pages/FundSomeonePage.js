@@ -32,7 +32,17 @@ const Item = (item, navigation) => {
             }}
             source={require('../images/interface-favorite-star.png')}
           />
-          <View style={fundSomeonelistStyle.cardView__Left}></View>
+          <View style={fundSomeonelistStyle.cardView__Left}>
+            <Image
+              style={{
+                height: '100%',
+                width: '100%',
+              }}
+              source={{
+                uri: `https://upload.wikimedia.org/wikipedia/commons/8/88/Hospital-de-Bellvitge.jpg`,
+              }}
+            />
+          </View>
           <View style={fundSomeonelistStyle.cardView__Right}>
             <Text
               style={fundSomeonelistStyle.cardView__Name}
@@ -147,6 +157,7 @@ const fundSomeonelistStyle = StyleSheet.create({
     height: 0.1 * windowHeight,
     width: 0.1 * windowHeight,
     borderRadius: 10,
+    overflow: 'hidden',
   },
   cardView__Right: {
     marginLeft: 10,
