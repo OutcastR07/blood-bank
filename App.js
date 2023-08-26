@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import ContactRequestPage from './pages/ContactRequestPage';
+import FundSomeonePage from './pages/FundSomeonePage';
 
 export default function App() {
   return (
@@ -16,7 +17,8 @@ export default function App() {
       {/* <Messages /> */}
       {/* <ImmediatelyRequestBodyPage /> */}
       {/* <BloodBanksPage /> */}
-      <ContactRequestPage />
+      {/* <ContactRequestPage /> */}
+      <FundSomeonePage />
     </View>
   );
 }
