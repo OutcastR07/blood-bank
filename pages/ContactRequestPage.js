@@ -9,6 +9,56 @@ import {
 
 const ContactRequestPage = () => {
   const [activeButton, setActiveButton] = useState("Pending");
+
+  const pendingContacts = [
+    {
+      name: "Xabin",
+      hospital: "Square Hospital Bangladesh",
+      bloodGroup: "B+",
+    },
+    {
+      name: "Xabin",
+      hospital: "Square Hospital Bangladesh",
+      bloodGroup: "B+",
+    },
+    {
+      name: "Xabin",
+      hospital: "Square Hospital Bangladesh",
+      bloodGroup: "B+",
+    },
+  ];
+
+  const approvedContacts = [
+    {
+      name: "Xabin",
+      hospital: "Square Hospital Bangladesh",
+      bloodGroup: "B+",
+    },
+    {
+      name: "Xabin",
+      hospital: "Square Hospital Bangladesh",
+      bloodGroup: "B+",
+    },
+    {
+      name: "Xabin",
+      hospital: "Square Hospital Bangladesh",
+      bloodGroup: "B+",
+    },
+    {
+      name: "Xabin",
+      hospital: "Square Hospital Bangladesh",
+      bloodGroup: "B+",
+    },
+    {
+      name: "Xabin",
+      hospital: "Square Hospital Bangladesh",
+      bloodGroup: "B+",
+    },
+  ];
+
+  const displayedContacts =
+    activeButton === "Pending" ? pendingContacts : approvedContacts;
+
   return (
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="white" />
@@ -52,33 +102,18 @@ const ContactRequestPage = () => {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.contactCard}>
-        <View style={styles.cardImage}></View>
-
-        <View style={styles.cardText}>
-          <Text style={styles.name}>Xabin</Text>
-          <Text style={styles.hospital}>Square Hospital Bangladesh</Text>
-          <Text style={styles.bloodGroup}>Required: B+ (2 Bags)</Text>
+      {displayedContacts.map((contact, index) => (
+        <View key={index} style={styles.contactCard}>
+          <View style={styles.cardImage}></View>
+          <View style={styles.cardText}>
+            <Text style={styles.name}>{contact.name}</Text>
+            <Text style={styles.hospital}>{contact.hospital}</Text>
+            <Text style={styles.bloodGroup}>
+              Required: {contact.bloodGroup} (2 Bags)
+            </Text>
+          </View>
         </View>
-      </View>
-      <View style={styles.contactCard}>
-        <View style={styles.cardImage}></View>
-
-        <View style={styles.cardText}>
-          <Text style={styles.name}>Xabin</Text>
-          <Text style={styles.hospital}>Square Hospital Bangladesh</Text>
-          <Text style={styles.bloodGroup}>Required: B+ (2 Bags)</Text>
-        </View>
-      </View>
-      <View style={styles.contactCard}>
-        <View style={styles.cardImage}></View>
-
-        <View style={styles.cardText}>
-          <Text style={styles.name}>Xabin</Text>
-          <Text style={styles.hospital}>Square Hospital Bangladesh</Text>
-          <Text style={styles.bloodGroup}>Required: B+ (2 Bags)</Text>
-        </View>
-      </View>
+      ))}
     </View>
   );
 };
