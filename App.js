@@ -1,7 +1,6 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import ContactRequestPage from './pages/ContactRequestPage';
-import FundSomeonePage from './pages/FundSomeonePage';
+import React from "react";
+import { StyleSheet, View } from "react-native";
+import NumberVerificationPage from "./pages/NumberVerificationPage";
 
 export default function App() {
   return (
@@ -18,7 +17,8 @@ export default function App() {
       {/* <ImmediatelyRequestBodyPage /> */}
       {/* <BloodBanksPage /> */}
       {/* <ContactRequestPage /> */}
-      <FundSomeonePage />
+      {/* <FundSomeonePage /> */}
+      <NumberVerificationPage />
     </View>
   );
 }
@@ -26,6 +26,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
 });
