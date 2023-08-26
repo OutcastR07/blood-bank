@@ -8,32 +8,28 @@ import {
   View,
 } from "react-native";
 
-const EditEmailAddressPage = () => {
+const EditNamePage = () => {
   return (
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="white" />
-      <Text style={styles.title}>Edit email address</Text>
+      <Text style={styles.title}>Edit Name</Text>
 
       <View style={styles.hr} />
 
       <View style={styles.subtitleContainer}>
-        <Text style={styles.subtitle}>Email</Text>
+        <Text style={styles.subtitle}>Name</Text>
         <Text style={styles.subtitleSuggestion}>
-          Enter your personal email address to keep up to date.
+          This is the name other users in Rantzon and Rantzon Support will see.
         </Text>
       </View>
 
       <View style={styles.inputContainer}>
-        <Text style={styles.enterText}>Enter email address</Text>
+        <Text style={styles.enterText}>Full Name</Text>
         <TextInput style={styles.input}></TextInput>
-        <Text style={styles.confirmationText}>
-          An email has been sent to this address. Click on the link to verify
-          the email address.
-        </Text>
       </View>
 
-      <TouchableOpacity style={styles.verifyButton}>
-        <Text style={styles.verifyText}>Verify</Text>
+      <TouchableOpacity style={styles.updateButton}>
+        <Text style={styles.updateText}>Update</Text>
       </TouchableOpacity>
     </View>
   );
@@ -79,10 +75,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 6,
   },
-  confirmationText: {
-    fontSize: 12,
-  },
-  verifyButton: {
+  updateButton: {
     alignItems: "center",
     borderRadius: 32,
     paddingVertical: 20,
@@ -92,11 +85,11 @@ const styles = StyleSheet.create({
     marginTop: 16,
     marginBottom: 16,
   },
-  verifyText: {
+  updateText: {
     color: "white",
     fontSize: 16,
     fontWeight: "bold",
   },
 });
 
-export default EditEmailAddressPage;
+export default EditNamePage;
