@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   ToastAndroid,
   Image,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StyleSheet, Dimensions } from 'react-native';
@@ -106,6 +107,14 @@ const DonateBloodPage = ({ navigation, route }) => {
   const [crowdFundings, setCrowdFundings] = useState([
     1, 2, 3, 4, 5, 6, 7, 8, 8, 1, 2, 3, 4, 5, 6, 7, 8,
   ]);
+  const [isModalVisible, setModalVisible] = useState(false); // State for modal visibility
+
+  const [selectedOption, setSelectedOption] = useState(null); // State for selected option
+
+  const handleOptionSelect = (option) => {
+    console.log(option);
+    setSelectedOption(option);
+  };
   //   useEffect(() => {
   //     (async () => {
   //       contextStore.setShowSpinner(true)
@@ -132,7 +141,31 @@ const DonateBloodPage = ({ navigation, route }) => {
       }}>
       <ScrollView>
         <View style={{ padding: 15 }}>
-          <Text style={donateBloodStyle.caption}>Donate Blood </Text>
+          <View
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexDirection: 'row',
+              marginVertical: 10,
+            }}>
+            <Text style={donateBloodStyle.caption}>Donate Blood </Text>
+            <TouchableOpacity
+              style={donateBloodStyle.nearbyContainer}
+              onPress={() => setModalVisible(true)}>
+              <Image
+                source={require('../images/filter.png')}
+                style={donateBloodStyle.locationIcon}
+              />
+
+              <Text style={donateBloodStyle.nearbyText}>Filter</Text>
+              <Image
+                source={require('../images/interface-arrows-button-down.png')}
+                style={donateBloodStyle.dropdownIcon}
+              />
+            </TouchableOpacity>
+          </View>
+
           <ScrollView
             contentContainerStyle={donateBloodStyle.scrollviewContainer}>
             <FlatList
@@ -144,6 +177,82 @@ const DonateBloodPage = ({ navigation, route }) => {
           </ScrollView>
         </View>
       </ScrollView>
+      {/* Modal */}
+      {isModalVisible && (
+        <TouchableWithoutFeedback onPress={() => setModalVisible(false)}>
+          <View style={donateBloodStyle.modalOverlay}>
+            <View style={donateBloodStyle.modal}>
+              <Text>Filter Based on Dates</Text>
+              <View style={{ marginTop: 10 }}>
+                {/* Options */}
+                <TouchableOpacity
+                  onPress={() => handleOptionSelect('latest')}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'flex-start',
+                    flexDirection: 'row',
+                    marginVertical: 10,
+                  }}>
+                  <View
+                    style={{
+                      height: 20,
+                      width: 20,
+                      borderRadius: 5,
+                      borderWidth: 1,
+                      marginRight: 10,
+                      backgroundColor:
+                        selectedOption === 'latest' ? '#3498db' : '#fff',
+                    }}></View>
+                  <Text>Lastest</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'flex-start',
+                    flexDirection: 'row',
+                    marginVertical: 10,
+                  }}
+                  onPress={() => handleOptionSelect('thisWeek')}>
+                  <View
+                    style={{
+                      height: 20,
+                      width: 20,
+                      borderRadius: 5,
+                      borderWidth: 1,
+                      marginRight: 10,
+                      backgroundColor:
+                        selectedOption === 'thisWeek' ? '#3498db' : '#fff',
+                    }}></View>
+                  <Text>This week</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'flex-start',
+                    flexDirection: 'row',
+                    marginVertical: 10,
+                  }}
+                  onPress={() => handleOptionSelect('lastWeek')}>
+                  <View
+                    style={{
+                      height: 20,
+                      width: 20,
+                      borderRadius: 5,
+                      borderWidth: 1,
+                      marginRight: 10,
+                      backgroundColor:
+                        selectedOption === 'lastWeek' ? '#3498db' : 'fff',
+                    }}></View>
+                  <Text>Last week</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      )}
     </SafeAreaView>
   );
 };
@@ -154,7 +263,7 @@ const donateBloodStyle = StyleSheet.create({
   caption: {
     fontSize: 25,
     fontWeight: 'bold',
-    marginBottom: 10,
+    width: 200,
   },
   scrollviewContainer: {
     // height: 0.7 * windowHeight,
@@ -201,5 +310,67 @@ const donateBloodStyle = StyleSheet.create({
   cardView__details: {
     fontSize: 12,
     flex: 0.5,
+  },
+  nearbyContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 24,
+    borderWidth: 1,
+    position: 'relative',
+  },
+  locationIcon: {
+    width: 14,
+    height: 14,
+    marginRight: 4,
+  },
+  dropdownIcon: {
+    width: 9,
+    height: 9,
+    marginRight: 2,
+  },
+  nearbyText: {
+    fontSize: 13,
+    color: '#333',
+    marginRight: 8,
+  },
+
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: windowHeight,
+  },
+  modal: {
+    backgroundColor: '#ecf3ff',
+    padding: 20,
+    borderRadius: 10,
+    width: '80%',
+  },
+  modalCloseButton: {
+    backgroundColor: 'red',
+    padding: 10,
+    borderRadius: 5,
+    alignSelf: 'flex-end',
+    marginTop: 10,
+  },
+
+  optionContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    marginVertical: 10,
+  },
+  selectedOption: {
+    backgroundColor: '#3498db', // Change to the color you want for selected option
+    padding: 5,
+    borderRadius: 5,
   },
 });
