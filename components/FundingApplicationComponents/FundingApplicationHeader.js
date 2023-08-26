@@ -28,9 +28,9 @@ const FundingApplicationHeader = () => {
           />
         </TouchableOpacity>
       </View>
-      <TouchableOpacity style={styles.addPictureButton}>
+      <View style={styles.addPictureButton}>
         <Text style={styles.addPicture}>Add Pictures</Text>
-      </TouchableOpacity>
+      </View>
 
       <View style={styles.cardContainer}>
         <View style={styles.card}></View>

@@ -34,9 +34,9 @@ const FundingApplicationBody = () => {
         placeholderTextColor="grey"
       />
 
-      <TouchableOpacity style={styles.addPaperworksButton}>
+      <View style={styles.addPaperworksButton}>
         <Text style={styles.addPaperworksText}>Add Paperworks</Text>
-      </TouchableOpacity>
+      </View>
 
       <View style={styles.cardContainer}>
         <View style={styles.card}></View>
@@ -45,9 +45,9 @@ const FundingApplicationBody = () => {
         <View style={styles.card}></View>
       </View>
 
-      <TouchableOpacity style={styles.paymentOptionsButton}>
+      <View style={styles.paymentOptionsButton}>
         <Text style={styles.paymentOptionsText}>Payment Options</Text>
-      </TouchableOpacity>
+      </View>
 
       <Text style={styles.subtitle}>MFS Information</Text>
 
