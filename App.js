@@ -1,6 +1,7 @@
-import React from "react";
-import { StyleSheet, View } from "react-native";
-import BloodBanksPage from "./pages/BloodBanksPage";
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
+import BloodBanksPage from './pages/BloodBanksPage';
+import DoctorDetailPage from './pages/DoctorDetailPage';
 
 export default function App() {
   return (
@@ -15,7 +16,7 @@ export default function App() {
       {/* <BloodReceivedPage /> */}
       {/* <Messages /> */}
       {/* <ImmediatelyRequestBodyPage /> */}
-      <BloodBanksPage />
+      <DoctorDetailPage />
     </View>
   );
 }
@@ -23,6 +24,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
   },
 });
