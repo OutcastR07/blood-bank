@@ -8,7 +8,29 @@ import {
   View,
 } from "react-native";
 
+const bloodBankData = [
+  "Hospital X",
+  "Hospital X",
+  "Hospital X",
+  "Hospital X",
+  "Hospital X",
+  "Hospital X",
+  "Hospital X",
+  "Hospital X",
+  "Hospital X",
+];
+
 const BloodBanksPage = () => {
+  const chunkedData = (data, size) => {
+    const chunkedArr = [];
+    for (let i = 0; i < data.length; i += size) {
+      chunkedArr.push(data.slice(i, i + size));
+    }
+    return chunkedArr;
+  };
+
+  const chunkedBloodBankData = chunkedData(bloodBankData, 3);
+
   return (
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="white" />
@@ -29,50 +51,16 @@ const BloodBanksPage = () => {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.cardContainer}>
-        <View style={styles.eachCard}>
-          <View style={styles.card}></View>
-          <Text style={styles.cardText}>X Hospital</Text>
+      {chunkedBloodBankData.map((row, rowIndex) => (
+        <View key={rowIndex} style={styles.cardContainer}>
+          {row.map((hospital, index) => (
+            <View key={index} style={styles.eachCard}>
+              <View style={styles.card}></View>
+              <Text style={styles.cardText}>{hospital}</Text>
+            </View>
+          ))}
         </View>
-        <View style={styles.eachCard}>
-          <View style={styles.card}></View>
-          <Text style={styles.cardText}>X Hospital</Text>
-        </View>
-        <View style={styles.eachCard}>
-          <View style={styles.card}></View>
-          <Text style={styles.cardText}>X Hospital</Text>
-        </View>
-      </View>
-
-      <View style={styles.cardContainer}>
-        <View style={styles.eachCard}>
-          <View style={styles.card}></View>
-          <Text style={styles.cardText}>X Hospital</Text>
-        </View>
-        <View style={styles.eachCard}>
-          <View style={styles.card}></View>
-          <Text style={styles.cardText}>X Hospital</Text>
-        </View>
-        <View style={styles.eachCard}>
-          <View style={styles.card}></View>
-          <Text style={styles.cardText}>X Hospital</Text>
-        </View>
-      </View>
-
-      <View style={styles.cardContainer}>
-        <View style={styles.eachCard}>
-          <View style={styles.card}></View>
-          <Text style={styles.cardText}>X Hospital</Text>
-        </View>
-        <View style={styles.eachCard}>
-          <View style={styles.card}></View>
-          <Text style={styles.cardText}>X Hospital</Text>
-        </View>
-        <View style={styles.eachCard}>
-          <View style={styles.card}></View>
-          <Text style={styles.cardText}>X Hospital</Text>
-        </View>
-      </View>
+      ))}
     </View>
   );
 };
@@ -127,6 +115,9 @@ const styles = StyleSheet.create({
     height: 100,
     borderRadius: 10,
     backgroundColor: "black",
+  },
+  cardText: {
+    marginTop: 8,
   },
 });
 
