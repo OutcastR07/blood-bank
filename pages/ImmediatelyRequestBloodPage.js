@@ -114,7 +114,7 @@ const ImmediatelyRequestBodyPage = () => {
       </View>
 
       <TouchableOpacity style={styles.submitRequestButton}>
-        <Text style={styles.submitRequestText}>Submit Review</Text>
+        <Text style={styles.submitRequestText}>Request</Text>
       </TouchableOpacity>
     </View>
   );
