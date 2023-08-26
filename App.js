@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import ImmediatelyRequestBodyPage from "./pages/ImmediatelyRequestBloodPage";
+import BloodBanksPage from "./pages/BloodBanksPage";
 
 export default function App() {
   return (
@@ -14,7 +14,8 @@ export default function App() {
       {/* <BloodRequestPage /> */}
       {/* <BloodReceivedPage /> */}
       {/* <Messages /> */}
-      <ImmediatelyRequestBodyPage />
+      {/* <ImmediatelyRequestBodyPage /> */}
+      <BloodBanksPage />
     </View>
   );
 }
