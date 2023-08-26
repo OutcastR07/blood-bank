@@ -16,12 +16,12 @@ const windowHeight = Dimensions.get('window').height;
 const Item = (item, navigation) => {
   return (
     <TouchableOpacity
-      style={fundSomeonelistStyle.card}
+      style={donateBloodStyle.card}
       onPress={() => {
-        // navigation.navigate('FundSomeoneDetailScreen', {id: item._id});
+        // navigation.navigate('DonateBloodDetailScreen', {id: item._id});
       }}>
       <View>
-        <View style={fundSomeonelistStyle.cardView}>
+        <View style={donateBloodStyle.cardView}>
           <Image
             style={{
               height: 20,
@@ -32,7 +32,7 @@ const Item = (item, navigation) => {
             }}
             source={require('../images/interface-favorite-star.png')}
           />
-          <View style={fundSomeonelistStyle.cardView__Left}>
+          <View style={donateBloodStyle.cardView__Left}>
             <Image
               style={{
                 height: '100%',
@@ -43,9 +43,9 @@ const Item = (item, navigation) => {
               }}
             />
           </View>
-          <View style={fundSomeonelistStyle.cardView__Right}>
+          <View style={donateBloodStyle.cardView__Right}>
             <Text
-              style={fundSomeonelistStyle.cardView__Name}
+              style={donateBloodStyle.cardView__Name}
               ellipsizeMode='tail'
               numberOfLines={1}>
               Xabin Chowdhury
@@ -53,32 +53,56 @@ const Item = (item, navigation) => {
             <Text
               ellipsizeMode='tail'
               numberOfLines={1}
-              style={fundSomeonelistStyle.cardView__hospitalName}>
+              style={donateBloodStyle.cardView__hospitalName}>
               Square Hospital Bangladesh
             </Text>
             <Text
               ellipsizeMode='tail'
               numberOfLines={1}
-              style={fundSomeonelistStyle.cardView__RequiredAmount}>
-              Requred Amount: Tk.10,000
+              style={donateBloodStyle.cardView__RequiredAmount}>
+              Required: B+ (2 Bags)
             </Text>
           </View>
         </View>
-        <Text
-          ellipsizeMode='tail'
-          numberOfLines={4}
-          style={fundSomeonelistStyle.cardView__details}>
-          Lorem Ipsum - Lorem Ipsum - The First Order Doctrine - The Second
-          Order Doctrine - The Third Order Doctrine - The Fourth Order Doctrine
-          - The Fifth Order Doctrine - The First Order Doctrine - The Second
-          Order Doctrine - The Third Order Doctrine -
-        </Text>
+        <View
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'flex-end',
+          }}>
+          <Text
+            ellipsizeMode='tail'
+            numberOfLines={4}
+            style={donateBloodStyle.cardView__details}>
+            <Text style={{ fontWeight: 'bold' }}>Message: </Text> Lorem Ipsum -
+            Lorem Ipsum - The First Order Doctrine - The Second Order Doctrine -
+            The Third Order Doctrine - The Fourth Order Doctrine - The Fifth
+            Order Doctrine - The First Order Doctrine - The Second Order
+            Doctrine - The Third Order Doctrine -
+          </Text>
+          <View style={{ flex: 0.4 }}>
+            <Text>Priority: This Week</Text>
+            <TouchableOpacity
+              style={{
+                width: '100%',
+                backgroundColor: '#3498db',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: 10,
+                borderRadius: 10,
+              }}>
+              <Text style={{ color: '#fff', flex: 1 }}>Request Contact</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
     </TouchableOpacity>
   );
 };
 
-const FundSomeonePage = ({ navigation, route }) => {
+const DonateBloodPage = ({ navigation, route }) => {
   const [crowdFundings, setCrowdFundings] = useState([
     1, 2, 3, 4, 5, 6, 7, 8, 8, 1, 2, 3, 4, 5, 6, 7, 8,
   ]);
@@ -108,9 +132,9 @@ const FundSomeonePage = ({ navigation, route }) => {
       }}>
       <ScrollView>
         <View style={{ padding: 15 }}>
-          <Text style={fundSomeonelistStyle.caption}>Fund Someone </Text>
+          <Text style={donateBloodStyle.caption}>Donate Blood </Text>
           <ScrollView
-            contentContainerStyle={fundSomeonelistStyle.scrollviewContainer}>
+            contentContainerStyle={donateBloodStyle.scrollviewContainer}>
             <FlatList
               data={crowdFundings}
               numColumns={1}
@@ -124,9 +148,9 @@ const FundSomeonePage = ({ navigation, route }) => {
   );
 };
 
-export default FundSomeonePage;
+export default DonateBloodPage;
 
-const fundSomeonelistStyle = StyleSheet.create({
+const donateBloodStyle = StyleSheet.create({
   caption: {
     fontSize: 25,
     fontWeight: 'bold',
@@ -172,8 +196,10 @@ const fundSomeonelistStyle = StyleSheet.create({
   },
   cardView__RequiredAmount: {
     fontSize: 14,
+    color: '#f4085d',
   },
   cardView__details: {
     fontSize: 12,
+    flex: 0.5,
   },
 });
