@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import NearbyHospitalsPage from "./pages/NearbyHospitalsPage";
+import RequestBodyPage from "./pages/RequestBloodPage";
 
 export default function App() {
   return (
@@ -23,7 +23,8 @@ export default function App() {
       {/* <DiagnosticCentersPage /> */}
       {/* <DiagnosticCenterDetailStyle /> */}
       {/* <HospitalsPage /> */}
-      <NearbyHospitalsPage />
+      {/* <NearbyHospitalsPage /> */}
+      <RequestBodyPage />
     </View>
   );
 }
