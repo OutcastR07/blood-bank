@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import EditNamePage from "./pages/EditNamePage";
+import EditPhoneNumberPage from "./pages/EditPhoneNumberPage";
 
 export default function App() {
   return (
@@ -26,7 +26,8 @@ export default function App() {
       {/* <NearbyHospitalsPage /> */}
       {/* <RequestBodyPage /> */}
       {/* <EditEmailAddressPage /> */}
-      <EditNamePage />
+      {/* <EditNamePage /> */}
+      <EditPhoneNumberPage />
     </View>
   );
 }
