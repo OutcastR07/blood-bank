@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import Settings from "./pages/Settings";
+import ContactRequestPage from "./pages/ContactRequestPage";
 
 export default function App() {
   return (
@@ -16,7 +16,7 @@ export default function App() {
       {/* <Messages /> */}
       {/* <ImmediatelyRequestBodyPage /> */}
       {/* <BloodBanksPage /> */}
-      {/* <ContactRequestPage /> */}
+      <ContactRequestPage />
       {/* <FundSomeonePage /> */}
       {/* <NumberVerificationPage /> */}
       {/* <DentalCentersPage /> */}
@@ -31,7 +31,7 @@ export default function App() {
       {/* <Services /> */}
       {/* <NotificationPage /> */}
       {/* <SaveSomeoneTodayPage /> */}
-      <Settings />
+      {/* <Settings /> */}
     </View>
   );
 }
