@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import Services from "./pages/Services";
+import NotificationPage from "./pages/Notification";
 
 export default function App() {
   return (
@@ -28,7 +28,8 @@ export default function App() {
       {/* <EditEmailAddressPage /> */}
       {/* <EditNamePage /> */}
       {/* <EditPhoneNumberPage />*/}
-      <Services />
+      {/* <Services /> */}
+      <NotificationPage />
     </View>
   );
 }
