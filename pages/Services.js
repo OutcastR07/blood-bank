@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-const Services = () => {
+const Services = ({ navigator }) => {
   return (
     <SafeAreaView
       style={{

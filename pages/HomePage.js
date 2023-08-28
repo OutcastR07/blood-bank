@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { ScrollView, StatusBar, StyleSheet, View } from "react-native";
-import CrowdfundingComponent from "../components/HomePageComponents/CrowdFundingComponent";
-import JumpIntoServices from "../components/HomePageComponents/JumpIntoServices";
-import LocationComponent from "../components/HomePageComponents/LocationComponent";
-import LoggedInUser from "../components/HomePageComponents/LoggedInUser";
-import LoggedOutUser from "../components/HomePageComponents/LoggedOutUser";
-import NearbyHospitals from "../components/HomePageComponents/NearbyHospitals";
-import SearchBar from "../components/HomePageComponents/SearchBar";
-import WaysToUseBloodBank from "../components/HomePageComponents/WaysToUseBloodBank";
+import React, { useEffect, useState } from 'react';
+import { ScrollView, StatusBar, StyleSheet, View } from 'react-native';
+import CrowdfundingComponent from '../components/HomePageComponents/CrowdFundingComponent';
+import JumpIntoServices from '../components/HomePageComponents/JumpIntoServices';
+import LocationComponent from '../components/HomePageComponents/LocationComponent';
+import LoggedInUser from '../components/HomePageComponents/LoggedInUser';
+import LoggedOutUser from '../components/HomePageComponents/LoggedOutUser';
+import NearbyHospitals from '../components/HomePageComponents/NearbyHospitals';
+import SearchBar from '../components/HomePageComponents/SearchBar';
+import WaysToUseBloodBank from '../components/HomePageComponents/WaysToUseBloodBank';
 
-const HomePage = () => {
+const HomePage = ({ navigation }) => {
   const [isLocationEnabled, setLocationEnabled] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -31,16 +31,16 @@ const HomePage = () => {
     <ScrollView>
       <View style={styles.container}>
         <StatusBar
-          barStyle="light-content"
-          backgroundColor={isLocationEnabled ? "black" : "#10472f"}
+          barStyle='light-content'
+          backgroundColor={isLocationEnabled ? 'black' : '#10472f'}
         />
         {!isLocationEnabled && <LocationComponent />}
         <SearchBar />
         {isLoggedIn ? <LoggedInUser /> : <LoggedOutUser />}
-        <JumpIntoServices />
-        <NearbyHospitals />
-        <CrowdfundingComponent />
-        <WaysToUseBloodBank />
+        <JumpIntoServices navigation={navigation} />
+        <NearbyHospitals navigation={navigation} />
+        <CrowdfundingComponent navigation={navigation} />
+        <WaysToUseBloodBank navigation={navigation} />
       </View>
     </ScrollView>
   );
@@ -49,7 +49,7 @@ const HomePage = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
   },
 });
 

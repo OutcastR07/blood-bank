@@ -2,34 +2,12 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import LoginPage from './pages/LoginPage';
 import Services from './pages/Services';
+import HomeNavigation from './navigation/navigation';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      {/* <AccountPage /> */}
-      {/* <AccountInfoPage /> */}
-      {/* <HomePage /> */}
-      {/* <HospitalDetailPage /> */}
-      {/* <DiagnosticCenterDetailPage /> */}
-      {/* <CrowdFundingApplicationPage /> */}
-      {/* <BloodRequestPage /> */}
-      {/* <BloodReceivedPage /> */}
-      {/* <Messages /> */}
-      {/* <ImmediatelyRequestBodyPage /> */}
-      {/* <BloodBanksPage /> */}
-      {/* <ContactRequestPage /> */}
-      {/* <FundSomeonePage /> */}
-      {/* <NumberVerificationPage /> */}
-      {/* <DentalCentersPage /> */}
-      {/* <DiagnosticCentersPage /> */}
-      {/* <DiagnosticCenterDetailStyle /> */}
-      {/* <HospitalsPage /> */}
-      {/* <NearbyHospitalsPage /> */}
-      {/* <RequestBodyPage /> */}
-      {/* <EditEmailAddressPage /> */}
-      {/* <EditNamePage /> */}
-      {/* <EditPhoneNumberPage />*/}
-      <Services />
+      <HomeNavigation />
     </View>
   );
 }

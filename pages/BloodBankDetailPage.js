@@ -109,7 +109,7 @@ const BloodBankDetailPage = ({ navigate, route }) => {
             <View style={bloodBankDetailStyle.card_section}>
               <Image
                 style={bloodBankDetailStyle.icon}
-                source={require('../images/mail-send-email.png')}
+                source={require('../images/travel-map-location-pin.png')}
               />
               <Text style={bloodBankDetailStyle.card__description}>
                 <Text>Road 18, Plot 81, Moghbazar, Dhaka - 1217</Text>
@@ -127,7 +127,7 @@ const BloodBankDetailPage = ({ navigate, route }) => {
             <View style={bloodBankDetailStyle.card_section}>
               <Image
                 style={bloodBankDetailStyle.icon}
-                source={require('../images/mail-send-email.png')}
+                source={require('../images/contact-book.png')}
               />
               <Text style={bloodBankDetailStyle.card__description}>
                 01914001234

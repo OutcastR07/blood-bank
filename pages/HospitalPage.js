@@ -85,7 +85,7 @@ const HospitalDetailPage = ({ navigate, route }) => {
             <View style={hospitalDetailStyle.card_section}>
               <Image
                 style={hospitalDetailStyle.icon}
-                source={require('../images/mail-send-email.png')}
+                source={require('../images/travel-map-location-pin.png')}
               />
               <Text style={hospitalDetailStyle.card__description}>
                 <Text>
@@ -108,7 +108,7 @@ const HospitalDetailPage = ({ navigate, route }) => {
             <View style={hospitalDetailStyle.card_section}>
               <Image
                 style={hospitalDetailStyle.icon}
-                source={require('../images/mail-send-email.png')}
+                source={require('../images/contact-book.png')}
               />
               <Text style={hospitalDetailStyle.card__description}>
                 01914001234

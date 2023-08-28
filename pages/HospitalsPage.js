@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Image,
   StatusBar,
@@ -6,21 +6,22 @@ import {
   Text,
   TouchableOpacity,
   View,
-} from "react-native";
+  ScrollView,
+} from 'react-native';
 
 const bloodBankData = [
-  "Hospital X",
-  "Hospital X",
-  "Hospital X",
-  "Hospital X",
-  "Hospital X",
-  "Hospital X",
-  "Hospital X",
-  "Hospital X",
-  "Hospital X",
+  'Hospital X',
+  'Hospital X',
+  'Hospital X',
+  'Hospital X',
+  'Hospital X',
+  'Hospital X',
+  'Hospital X',
+  'Hospital X',
+  'Hospital X',
 ];
 
-const HospitalsPage = () => {
+const HospitalsPage = ({ navigation }) => {
   const chunkedData = (data, size) => {
     const chunkedArr = [];
     for (let i = 0; i < data.length; i += size) {
@@ -33,34 +34,50 @@ const HospitalsPage = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor="white" />
+      <StatusBar barStyle='dark-content' backgroundColor='white' />
 
       <View style={styles.header}>
         <Text style={styles.text}>Hospitals</Text>
 
         <TouchableOpacity style={styles.selectAreaButton}>
           <Image
-            source={require("../images/travel-map-earth-2.png")}
+            source={require('../images/travel-map-earth-2.png')}
             style={styles.earthImage}
           />
           <Text style={styles.selectAreaText}>Select Area</Text>
           <Image
-            source={require("../images/interface-arrows-button-down.png")}
+            source={require('../images/interface-arrows-button-down.png')}
             style={styles.dropdownIcon}
           />
         </TouchableOpacity>
       </View>
-
-      {chunkedBloodBankData.map((row, rowIndex) => (
-        <View key={rowIndex} style={styles.cardContainer}>
-          {row.map((hospital, index) => (
-            <View key={index} style={styles.eachCard}>
-              <View style={styles.card}></View>
-              <Text style={styles.cardText}>{hospital}</Text>
-            </View>
-          ))}
-        </View>
-      ))}
+      <ScrollView>
+        {chunkedBloodBankData.map((row, rowIndex) => (
+          <View key={rowIndex} style={styles.cardContainer}>
+            {row.map((hospital, index) => (
+              <TouchableOpacity
+                key={index}
+                style={styles.eachCard}
+                onPress={() => {
+                  navigation.navigate('HospitalDetailPage');
+                }}>
+                <View style={styles.card}>
+                  <Image
+                    style={{
+                      width: 100,
+                      height: 100,
+                      borderRadius: 4,
+                    }}
+                    source={{
+                      uri: `https://upload.wikimedia.org/wikipedia/commons/8/88/Hospital-de-Bellvitge.jpg`,
+                    }}></Image>
+                </View>
+                <Text style={styles.cardText}>{hospital}</Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        ))}
+      </ScrollView>
     </View>
   );
 };
@@ -70,19 +87,19 @@ const styles = StyleSheet.create({
     margin: 16,
   },
   header: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   text: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontSize: 18,
   },
   selectAreaButton: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     borderWidth: 1,
-    borderColor: "#ccc",
+    borderColor: '#ccc',
     borderRadius: 16,
     paddingVertical: 8,
     paddingHorizontal: 12,
@@ -100,21 +117,22 @@ const styles = StyleSheet.create({
     height: 13,
   },
   cardContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignContent: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignContent: 'center',
     marginTop: 16,
   },
   eachCard: {
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   card: {
     width: 100,
     height: 100,
     borderRadius: 10,
-    backgroundColor: "black",
+    backgroundColor: 'black',
+    overflow: 'hidden',
   },
   cardText: {
     marginTop: 8,
