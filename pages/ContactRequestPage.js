@@ -103,7 +103,7 @@ const ContactRequestPage = () => {
       </View>
 
       {displayedContacts.map((contact, index) => (
-        <View key={index} style={styles.contactCard}>
+        <TouchableOpacity key={index} style={styles.contactCard}>
           <View style={styles.cardImage}></View>
           <View style={styles.cardText}>
             <Text style={styles.name}>{contact.name}</Text>
@@ -112,7 +112,7 @@ const ContactRequestPage = () => {
               Required: {contact.bloodGroup} (2 Bags)
             </Text>
           </View>
-        </View>
+        </TouchableOpacity>
       ))}
     </View>
   );
