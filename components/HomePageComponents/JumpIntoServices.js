@@ -37,7 +37,7 @@ const JumpIntoServices = ({ navigation }) => {
         />
         <CardItem
           onClick={() => {
-            navigation.navigate('BloodBankDetailPage');
+            navigation.navigate('DiagnosticCentersPage');
           }}
           title='Diagnostic Centers'
           imageSource={require('../../images/diagnostic-center.png')}

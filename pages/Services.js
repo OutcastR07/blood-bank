@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-const Services = ({ navigator }) => {
+const Services = ({ navigation }) => {
   return (
     <SafeAreaView
       style={{
@@ -44,7 +44,9 @@ const Services = ({ navigator }) => {
             flexDirection: 'row',
             paddingBottom: 15,
           }}
-          onPress={() => {}}>
+          onPress={() => {
+            navigation.navigate('DoctorsPage');
+          }}>
           <Image
             source={require('../images/doctor.png')}
             style={{ height: 50, width: 50 }}
@@ -52,6 +54,9 @@ const Services = ({ navigator }) => {
           <Text>Doctors</Text>
         </TouchableOpacity>
         <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('HospitalsPage');
+          }}
           style={{
             width: windowWidth / 3.8,
             height: windowWidth / 5,
@@ -68,7 +73,9 @@ const Services = ({ navigator }) => {
           <Text>Hospitals</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => {}}
+          onPress={() => {
+            navigation.navigate('DentistCentersPage');
+          }}
           style={{
             width: windowWidth / 3.8,
             height: windowWidth / 5,
@@ -94,7 +101,10 @@ const Services = ({ navigator }) => {
           justifyContent: 'space-between',
           marginTop: 10,
         }}>
-        <TouchableOpacity onPress={() => {}}>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('DiagnosticCentersPage');
+          }}>
           <View
             style={{
               borderRadius: 10,
@@ -117,7 +127,10 @@ const Services = ({ navigator }) => {
             />
           </View>
         </TouchableOpacity>
-        <View
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('BloodBanksPage');
+          }}
           style={{
             borderRadius: 10,
             padding: 10,
@@ -137,7 +150,7 @@ const Services = ({ navigator }) => {
             source={require('../images/blood-bag.png')}
             style={{ height: 80, width: 70 }}
           />
-        </View>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );

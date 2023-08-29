@@ -85,7 +85,7 @@ const DiagnosticCenterDetailPage = ({ navigate, route }) => {
             <View style={DiagnosticCenterDetailStyle.card_section}>
               <Image
                 style={DiagnosticCenterDetailStyle.icon}
-                source={require('../images/mail-send-email.png')}
+                source={require('../images/travel-map-location-pin.png')}
               />
               <Text style={DiagnosticCenterDetailStyle.card__description}>
                 <Text>
@@ -108,7 +108,7 @@ const DiagnosticCenterDetailPage = ({ navigate, route }) => {
             <View style={DiagnosticCenterDetailStyle.card_section}>
               <Image
                 style={DiagnosticCenterDetailStyle.icon}
-                source={require('../images/mail-send-email.png')}
+                source={require('../images/contact-book.png')}
               />
               <Text style={DiagnosticCenterDetailStyle.card__description}>
                 01914001234

@@ -15,6 +15,10 @@ import DoctorsPage from '../pages/DoctorsPage';
 import DoctorDetailPage from '../pages/DoctorDetailPage';
 import BloodBanksPage from '../pages/BloodBanksPage';
 import BloodBankDetailPage from '../pages/BloodBankDetailPage';
+import DiagnosticCentersPage from '../pages/DiagnosticCentersPage';
+import DiagnosticCenterDetailPage from '../pages/DiagnosticCenter';
+import DentalCentersPage from '../pages/DentalCentersPage';
+import DentistDetailPage from '../pages/DentistPage';
 
 const Tabs = createBottomTabNavigator();
 
@@ -44,6 +48,22 @@ function HomeStackScreen() {
       <HomeStack.Screen
         name='BloodBankDetailPage'
         component={BloodBankDetailPage}
+      />
+      <HomeStack.Screen
+        name='DiagnosticCenter'
+        component={DiagnosticCenterDetailPage}
+      />
+      <HomeStack.Screen
+        name='DiagnosticCentersPage'
+        component={DiagnosticCentersPage}
+      />
+      <HomeStack.Screen
+        name='DentistCentersPage'
+        component={DentalCentersPage}
+      />
+      <HomeStack.Screen
+        name='DentistDetailPage'
+        component={DentistDetailPage}
       />
     </HomeStack.Navigator>
   );

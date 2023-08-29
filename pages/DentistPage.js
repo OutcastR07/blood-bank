@@ -72,7 +72,7 @@ const DentistDetailPage = ({ navigate, route }) => {
             <View style={DentistDetailStyle.card_section}>
               <Image
                 style={DentistDetailStyle.icon}
-                source={require('../images/mail-send-email.png')}
+                source={require('../images/travel-map-location-pin.png')}
               />
               <Text style={DentistDetailStyle.card__description}>
                 <Text>
@@ -95,7 +95,7 @@ const DentistDetailPage = ({ navigate, route }) => {
             <View style={DentistDetailStyle.card_section}>
               <Image
                 style={DentistDetailStyle.icon}
-                source={require('../images/mail-send-email.png')}
+                source={require('../images/contact-book.png')}
               />
               <Text style={DentistDetailStyle.card__description}>
                 01914001234
