@@ -1,7 +1,7 @@
-import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import React from 'react';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-const CrowdFundingComponent = () => {
+const CrowdFundingComponent = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.textContainer}>
@@ -9,26 +9,34 @@ const CrowdFundingComponent = () => {
         <Text style={styles.text}>operations</Text>
       </View>
       <View style={styles.imageContainer}>
-        <View style={styles.imageCardContainer}>
+        <TouchableOpacity
+          style={styles.imageCardContainer}
+          onPress={() => {
+            navigation.navigate('ApplyForCrowdFunding');
+          }}>
           <View style={styles.imageCard}>
             <Image
-              source={require("../../images/fund.png")}
+              source={require('../../images/fund.png')}
               style={styles.image}
-              resizeMode="center"
+              resizeMode='center'
             />
           </View>
           <Text style={styles.cardLabel}>Raise Fund</Text>
-        </View>
-        <View style={styles.imageCardContainer}>
-          <View style={[styles.imageCard, { backgroundColor: "#f8fdff" }]}>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.imageCardContainer}
+          onPress={() => {
+            navigation.navigate('FundSomeonePage');
+          }}>
+          <View style={[styles.imageCard, { backgroundColor: '#f8fdff' }]}>
             <Image
-              source={require("../../images/patient.png")}
+              source={require('../../images/patient.png')}
               style={styles.image}
-              resizeMode="center"
+              resizeMode='center'
             />
           </View>
           <Text style={styles.cardLabel}>Fund Someone</Text>
-        </View>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -36,31 +44,31 @@ const CrowdFundingComponent = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     marginHorizontal: 16,
     marginBottom: 12,
   },
   textContainer: {
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
     marginTop: 10,
     marginRight: 25,
   },
   text: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   imageContainer: {
     flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     marginTop: 6,
   },
   imageCardContainer: {
-    alignItems: "center",
+    alignItems: 'center',
   },
   imageCard: {
     width: 100,
@@ -68,16 +76,16 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 35,
     borderWidth: 1,
-    borderColor: "#d4d4d6",
-    justifyContent: "center",
-    alignItems: "center",
+    borderColor: '#d4d4d6',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   image: {
     width: 50,
     height: 50,
   },
   cardLabel: {
-    textAlign: "center",
+    textAlign: 'center',
     marginTop: 6,
     fontSize: 12,
   },

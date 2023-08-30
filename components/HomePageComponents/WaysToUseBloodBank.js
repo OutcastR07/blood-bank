@@ -1,33 +1,37 @@
-import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import React from 'react';
+import { Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-const WaysToUseBloodBank = () => {
+const WaysToUseBloodBank = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.boldText}>
         <Text style={styles.bold}>Ways to use Blood bank</Text>
       </Text>
       <Image
-        source={require("../../images/Bloodbank-Bg.png")}
+        source={require('../../images/Bloodbank-Bg.png')}
         style={styles.image}
-        resizeMode="contain"
+        resizeMode='contain'
       />
       <Image
-        source={require("../../images/Blood-bank-bg-picture.png")}
+        source={require('../../images/Blood-bank-bg-picture.png')}
         style={styles.overlayImage}
-        resizeMode="contain"
+        resizeMode='contain'
       />
-      <View style={styles.overlayContainer}>
+      <TouchableOpacity
+        style={styles.overlayContainer}
+        onPress={() => {
+          navigation.navigate('SaveSomeoneToday');
+        }}>
         <Text style={styles.overlayText}>Request blood for patient</Text>
         <View style={styles.learnMoreContainer}>
           <Text style={styles.learnMoreText}>Learn more</Text>
           <Image
-            source={require("../../images/interface-arrows-right-white.png")}
+            source={require('../../images/interface-arrows-right-white.png')}
             style={styles.arrayIcon}
-            resizeMode="contain"
+            resizeMode='contain'
           />
         </View>
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -37,51 +41,51 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     marginTop: 14,
     marginBottom: 32,
-    position: "relative",
+    position: 'relative',
   },
   boldText: {
     fontSize: 18,
   },
   bold: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   image: {
-    width: "100%",
+    width: '100%',
     height: 100,
     marginTop: 10,
   },
   overlayImage: {
-    position: "absolute",
+    position: 'absolute',
     left: -3,
     bottom: 0.4,
-    width: "60%",
+    width: '60%',
     height: 99,
     borderTopLeftRadius: 14,
     borderBottomLeftRadius: 14,
-    overflow: "hidden",
+    overflow: 'hidden',
   },
   overlayContainer: {
-    position: "absolute",
+    position: 'absolute',
     right: 0,
     bottom: 0,
-    width: "40%",
+    width: '40%',
     height: 100,
     padding: 12,
   },
   overlayText: {
     fontSize: 13,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginBottom: 8,
-    color: "white",
+    color: 'white',
   },
   learnMoreContainer: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   learnMoreText: {
     fontSize: 12,
     marginRight: 5,
-    color: "white",
+    color: 'white',
   },
   arrayIcon: {
     width: 12,

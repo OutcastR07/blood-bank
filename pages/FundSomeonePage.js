@@ -18,7 +18,7 @@ const Item = (item, navigation) => {
     <TouchableOpacity
       style={fundSomeonelistStyle.card}
       onPress={() => {
-        // navigation.navigate('FundSomeoneDetailScreen', {id: item._id});
+        navigation.navigate('AskingForFundPage');
       }}>
       <View>
         <View style={fundSomeonelistStyle.cardView}>

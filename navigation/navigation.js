@@ -19,6 +19,14 @@ import DiagnosticCentersPage from '../pages/DiagnosticCentersPage';
 import DiagnosticCenterDetailPage from '../pages/DiagnosticCenter';
 import DentalCentersPage from '../pages/DentalCentersPage';
 import DentistDetailPage from '../pages/DentistPage';
+import FundSomeonePage from '../pages/FundSomeonePage';
+import FundAskingPage from '../pages/FundAskingPage';
+import CrowdFundingApplicationPage from '../pages/CrowdFundingApplicationPage';
+import SaveSomeoneTodayPage from '../pages/SaveSomeoneTodayPage';
+import RequestBloodPage from '../pages/RequestBloodPage';
+import DonateBloodPage from '../pages/DonateBloodPage';
+import BloodRequestPage from '../pages/BloodRequestPage';
+import BloodReceivedPage from '../pages/BloodReceivedPage';
 
 const Tabs = createBottomTabNavigator();
 
@@ -65,6 +73,24 @@ function HomeStackScreen() {
         name='DentistDetailPage'
         component={DentistDetailPage}
       />
+      <HomeStack.Screen name='FundSomeonePage' component={FundSomeonePage} />
+      <HomeStack.Screen name='AskingForFundPage' component={FundAskingPage} />
+      <HomeStack.Screen
+        name='ApplyForCrowdFunding'
+        component={CrowdFundingApplicationPage}
+      />
+      <HomeStack.Screen
+        name='SaveSomeoneToday'
+        component={SaveSomeoneTodayPage}
+      />
+      <HomeStack.Screen name='RequestBloodPage' component={RequestBloodPage} />
+      <HomeStack.Screen name='DonateBloodPage' component={DonateBloodPage} />
+      <HomeStack.Screen name='BloodRequestPage' component={BloodRequestPage} />
+      <HomeStack.Screen
+        name='BloodReceivedPage'
+        component={BloodReceivedPage}
+      />
+      {/* <HomeStack.Screen name='' component={}/> */}
     </HomeStack.Navigator>
   );
 }
@@ -76,6 +102,37 @@ function ServicesStackScreen() {
         headerShown: false,
       }}>
       <ServicesStack.Screen name='ServicesPage' component={Services} />
+      <ServicesStack.Screen
+        name='HospitalDetailPage'
+        component={HospitalDetailPage}
+      />
+      <ServicesStack.Screen name='HospitalsPage' component={HospitalsPage} />
+      <ServicesStack.Screen name='DoctorsPage' component={DoctorsPage} />
+      <ServicesStack.Screen
+        name='DoctorDetailScreen'
+        component={DoctorDetailPage}
+      />
+      <ServicesStack.Screen name='BloodBanksPage' component={BloodBanksPage} />
+      <ServicesStack.Screen
+        name='BloodBankDetailPage'
+        component={BloodBankDetailPage}
+      />
+      <ServicesStack.Screen
+        name='DiagnosticCenter'
+        component={DiagnosticCenterDetailPage}
+      />
+      <ServicesStack.Screen
+        name='DiagnosticCentersPage'
+        component={DiagnosticCentersPage}
+      />
+      <ServicesStack.Screen
+        name='DentistCentersPage'
+        component={DentalCentersPage}
+      />
+      <ServicesStack.Screen
+        name='DentistDetailPage'
+        component={DentistDetailPage}
+      />
     </ServicesStack.Navigator>
   );
 }

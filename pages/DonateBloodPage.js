@@ -85,6 +85,9 @@ const Item = (item, navigation) => {
           <View style={{ flex: 0.4 }}>
             <Text>Priority: This Week</Text>
             <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('BloodRequestPage');
+              }}
               style={{
                 width: '100%',
                 backgroundColor: '#3498db',
