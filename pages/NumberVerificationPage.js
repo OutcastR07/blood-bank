@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState } from 'react';
 import {
   StatusBar,
   StyleSheet,
@@ -6,16 +6,16 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-} from "react-native";
+} from 'react-native';
 
 const NumberVerificationPage = () => {
   const [verificationCode, setVerificationCode] = useState([
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
   ]);
   const inputRefs = useRef([]);
 
@@ -31,7 +31,7 @@ const NumberVerificationPage = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor="white" />
+      <StatusBar barStyle='dark-content' backgroundColor='white' />
 
       <View style={styles.header}>
         <Text style={styles.text}>Verify your number</Text>
@@ -41,7 +41,7 @@ const NumberVerificationPage = () => {
 
       <View style={styles.commandContainer}>
         <Text style={styles.command}>
-          A 6 digit verification code has been sent to your number.{" "}
+          A 6 digit verification code has been sent to your number.{' '}
           <Text style={styles.commandOption}>Use a different number</Text>
         </Text>
       </View>
@@ -54,7 +54,7 @@ const NumberVerificationPage = () => {
             value={verificationCode[index]}
             onChangeText={(value) => handleVerificationCodeChange(index, value)}
             maxLength={1}
-            keyboardType="numeric"
+            keyboardType='numeric'
             ref={(ref) => (inputRefs.current[index] = ref)}
           />
         ))}
@@ -79,25 +79,25 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   text: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontSize: 18,
   },
   hr: {
-    borderBottomColor: "#d0d0d1",
+    borderBottomColor: '#d0d0d1',
     borderBottomWidth: 1,
-    width: "100%",
+    width: '100%',
     marginBottom: 8,
   },
   command: {
     fontSize: 12,
   },
   commandOption: {
-    color: "#4a6997",
-    textDecorationLine: "underline",
+    color: '#4a6997',
+    textDecorationLine: 'underline',
   },
   cardContainer: {
-    flexDirection: "row",
-    justifyContent: "space-around",
+    flexDirection: 'row',
+    justifyContent: 'space-around',
     marginTop: 10,
     marginBottom: 10,
   },
@@ -105,32 +105,34 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 12,
-    borderColor: "#c5c4c5",
+    borderColor: '#c5c4c5',
     borderWidth: 1,
-    textAlign: "center",
+    textAlign: 'center',
   },
   codeResendContainer: {
-    flexDirection: "row",
-    justifyContent: "flex-end",
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
     marginVertical: 12,
   },
   codeResendText: {
     fontSize: 12,
   },
   verifyButton: {
-    alignItems: "center",
+    alignItems: 'center',
     borderRadius: 32,
     paddingVertical: 20,
     paddingHorizontal: 12,
-    backgroundColor: "#11462f",
-    width: "100%",
+    backgroundColor: '#11462f',
+    width: '100%',
     marginTop: 16,
     marginBottom: 16,
   },
   verifyText: {
-    color: "white",
+    color: 'white',
     fontSize: 16,
-    fontWeight: "bold",
+    fontWeight: 'bold',
+    width: '100%',
+    textAlign: 'center',
   },
 });
 

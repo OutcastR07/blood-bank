@@ -36,7 +36,11 @@ const HomePage = ({ navigation }) => {
         />
         {!isLocationEnabled && <LocationComponent />}
         <SearchBar />
-        {isLoggedIn ? <LoggedInUser /> : <LoggedOutUser />}
+        {isLoggedIn ? (
+          <LoggedInUser navigation={navigation} />
+        ) : (
+          <LoggedOutUser navigation={navigation} />
+        )}
         <JumpIntoServices navigation={navigation} />
         <NearbyHospitals navigation={navigation} />
         <CrowdfundingComponent navigation={navigation} />

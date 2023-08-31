@@ -27,6 +27,9 @@ import RequestBloodPage from '../pages/RequestBloodPage';
 import DonateBloodPage from '../pages/DonateBloodPage';
 import BloodRequestPage from '../pages/BloodRequestPage';
 import BloodReceivedPage from '../pages/BloodReceivedPage';
+import LoginPage from '../pages/LoginPage';
+import NumberVerificationPage from '../pages/NumberVerificationPage';
+import CreateAccountPage from '../pages/CreateAccountPage';
 
 const Tabs = createBottomTabNavigator();
 
@@ -89,6 +92,15 @@ function HomeStackScreen() {
       <HomeStack.Screen
         name='BloodReceivedPage'
         component={BloodReceivedPage}
+      />
+      <HomeStack.Screen name='LoginPage' component={LoginPage} />
+      <HomeStack.Screen
+        name='RequestVerificationCode'
+        component={NumberVerificationPage}
+      />
+      <HomeStack.Screen
+        name='CreateAccountPage'
+        component={CreateAccountPage}
       />
       {/* <HomeStack.Screen name='' component={}/> */}
     </HomeStack.Navigator>
