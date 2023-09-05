@@ -72,13 +72,12 @@ const SendText = () => {
   );
 };
 
-const Messages = () => {
+const Messages = ({ navigation }) => {
   return (
     <SafeAreaView
       style={{
         flex: 1,
         justifyContent: 'space-between',
-
         backgroundColor: 'white',
       }}>
       <View

@@ -30,6 +30,15 @@ import BloodReceivedPage from '../pages/BloodReceivedPage';
 import LoginPage from '../pages/LoginPage';
 import NumberVerificationPage from '../pages/NumberVerificationPage';
 import CreateAccountPage from '../pages/CreateAccountPage';
+import ListMessages from '../pages/ListMessages';
+import Messages from '../pages/Messages';
+import ContactRequestPage from '../pages/ContactRequestPage';
+import SavedItems from '../pages/SavedItems';
+import NotificationPage from '../pages/Notification';
+import Settings from '../pages/Settings';
+import EditNamePage from '../pages/EditNamePage';
+import EditPhoneNumberPage from '../pages/EditPhoneNumberPage';
+import EditEmailAddressPage from '../pages/EditEmailAddressPage';
 
 const Tabs = createBottomTabNavigator();
 
@@ -103,6 +112,7 @@ function HomeStackScreen() {
         component={CreateAccountPage}
       />
       {/* <HomeStack.Screen name='' component={}/> */}
+      {/* <HomeStack.Screen name='' component={}/> */}
     </HomeStack.Navigator>
   );
 }
@@ -155,7 +165,26 @@ function AccountStackScreen() {
       screenOptions={{
         headerShown: false,
       }}>
+      <AccountStack.Screen name='AccountPage' component={AccountPage} />
+      <AccountStack.Screen name='ListMessages' component={ListMessages} />
+      <AccountStack.Screen name='Messages' component={Messages} />
+      <AccountStack.Screen name='SavedItems' component={SavedItems} />
+      <AccountStack.Screen name='Notifications' component={NotificationPage} />
+      <AccountStack.Screen name='Settings' component={Settings} />
       <AccountStack.Screen name='AccountInfoPage' component={AccountInfoPage} />
+      <AccountStack.Screen name='EditNamePage' component={EditNamePage} />
+      <AccountStack.Screen
+        name='EditPhoneNumberPage'
+        component={EditPhoneNumberPage}
+      />
+      <AccountStack.Screen
+        name='EditEmailAddressPage'
+        component={EditEmailAddressPage}
+      />
+      <AccountStack.Screen
+        name='ContactRequestPage'
+        component={ContactRequestPage}
+      />
     </AccountStack.Navigator>
   );
 }

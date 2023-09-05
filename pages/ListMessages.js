@@ -13,7 +13,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
-const ListMessages = ({ navigate }) => {
+const ListMessages = ({ navigation }) => {
   const index = [0, 1, 2, 3, 4, 3, 5, 1, 2, 3, 4, 5];
   return (
     <SafeAreaView
@@ -38,9 +38,7 @@ const ListMessages = ({ navigate }) => {
           <TouchableOpacity
             style={ListMessagesStyle.cardView}
             onPress={() => {
-              navigation.navigate('DoctorDetailScreen', {
-                id: doctor._id,
-              });
+              navigation.navigate('Messages');
             }}>
             <View style={ListMessagesStyle.cardView__Left}></View>
             <View style={ListMessagesStyle.cardView__Right}>

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   StatusBar,
   StyleSheet,
@@ -6,12 +6,12 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-} from "react-native";
+} from 'react-native';
 
-const EditEmailAddressPage = () => {
+const EditEmailAddressPage = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor="white" />
+      <StatusBar barStyle='dark-content' backgroundColor='white' />
       <Text style={styles.title}>Edit email address</Text>
 
       <View style={styles.hr} />
@@ -45,35 +45,35 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginBottom: 8,
   },
   hr: {
-    borderBottomColor: "#d0d0d1",
+    borderBottomColor: '#d0d0d1',
     borderBottomWidth: 1,
-    width: "100%",
+    width: '100%',
     marginBottom: 16,
   },
   subtitleContainer: {
     marginBottom: 16,
   },
   subtitle: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontSize: 18,
   },
   subtitleSuggestion: {
     fontSize: 14,
-    fontWeight: "300",
+    fontWeight: '300',
   },
   inputContainer: {
     marginVertical: 16,
   },
   enterText: {
-    fontWeight: "600",
+    fontWeight: '600',
   },
   input: {
     borderWidth: 1,
-    borderColor: "#e7e6e6",
+    borderColor: '#e7e6e6',
     marginVertical: 8,
     borderRadius: 14,
     paddingHorizontal: 12,
@@ -83,19 +83,21 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   verifyButton: {
-    alignItems: "center",
+    alignItems: 'center',
     borderRadius: 32,
     paddingVertical: 20,
     paddingHorizontal: 12,
-    backgroundColor: "#11462f",
-    width: "100%",
+    backgroundColor: '#11462f',
+    width: '100%',
     marginTop: 16,
     marginBottom: 16,
   },
   verifyText: {
-    color: "white",
+    color: 'white',
     fontSize: 16,
-    fontWeight: "bold",
+    fontWeight: 'bold',
+    width: '100%',
+    textAlign: 'center',
   },
 });
 

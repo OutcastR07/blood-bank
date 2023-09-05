@@ -1,58 +1,78 @@
-import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import React from 'react';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-const AccountBody = () => {
+const AccountBody = ({ navigation }) => {
   return (
     <View>
       <View style={styles.container}>
-        <View style={styles.card}>
+        <TouchableOpacity
+          style={styles.card}
+          onPress={() => {
+            navigation.navigate('ContactRequestPage');
+          }}>
           <Image
-            source={require("../../images/contact-book.png")}
+            source={require('../../images/contact-book.png')}
             style={styles.cardImage}
           />
           <Text style={styles.cardTitle}>Contact request</Text>
-        </View>
-        <View style={styles.card}>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.card}
+          onPress={() => {
+            navigation.navigate('SavedItems');
+          }}>
           <Image
-            source={require("../../images/interface-favorite-star.png")}
+            source={require('../../images/interface-favorite-star.png')}
             style={styles.cardImage}
           />
           <Text style={styles.cardTitle}>Starred</Text>
-        </View>
-        <View style={styles.card}>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.card}
+          onPress={() => {
+            navigation.navigate('ListMessages');
+          }}>
           <Image
-            source={require("../../images/mail-send-email.png")}
+            source={require('../../images/mail-send-email.png')}
             style={styles.cardImage}
           />
           <Text style={styles.cardTitle}>Messages</Text>
-        </View>
-        <View style={styles.card}>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.card}
+          onPress={() => {
+            navigation.navigate('Notifications');
+          }}>
           <Image
-            source={require("../../images/interface-alert-alarm-bell-2.png")}
+            source={require('../../images/interface-alert-alarm-bell-2.png')}
             style={styles.cardImage}
           />
           <Text style={styles.cardTitle}>Notifications</Text>
-        </View>
+        </TouchableOpacity>
       </View>
       <View style={styles.hr} />
       <View style={styles.verticalSection}>
-        <View style={styles.verticalItem}>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('Settings');
+          }}
+          style={styles.verticalItem}>
           <Image
-            source={require("../../images/settings.png")}
+            source={require('../../images/settings.png')}
             style={styles.verticalImage}
           />
           <Text style={styles.verticalText}>Settings</Text>
-        </View>
+        </TouchableOpacity>
         <View style={styles.verticalItem}>
           <Image
-            source={require("../../images/information.png")}
+            source={require('../../images/information.png')}
             style={styles.verticalImage}
           />
           <Text style={styles.verticalText}>Legal</Text>
         </View>
         <View style={styles.verticalItem}>
           <Image
-            source={require("../../images/exit.png")}
+            source={require('../../images/exit.png')}
             style={styles.verticalImage}
           />
           <Text style={styles.verticalText}>Logout</Text>
@@ -65,43 +85,43 @@ const AccountBody = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginHorizontal: 20,
     marginTop: 40,
   },
   card: {
-    width: "23%",
-    backgroundColor: "#ffffff",
+    width: '23%',
+    backgroundColor: '#ffffff',
     borderRadius: 10,
     paddingHorizontal: 10,
     paddingVertical: 8,
-    alignItems: "center",
-    backgroundColor: "#eeefef",
+    alignItems: 'center',
+    backgroundColor: '#eeefef',
   },
   cardImage: {
     width: 25,
     height: 25,
-    resizeMode: "contain",
+    resizeMode: 'contain',
   },
   cardTitle: {
     marginTop: 8,
     fontSize: 8,
-    textAlign: "center",
+    textAlign: 'center',
   },
   hr: {
     borderBottomWidth: 6,
-    borderBottomColor: "#eeefef",
+    borderBottomColor: '#eeefef',
     marginVertical: 20,
   },
   verticalSection: {
-    flexDirection: "column",
-    alignItems: "flex-start",
+    flexDirection: 'column',
+    alignItems: 'flex-start',
     marginHorizontal: 20,
   },
   verticalItem: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     marginBottom: 12,
   },
   verticalImage: {
@@ -116,7 +136,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     marginTop: 10,
     fontSize: 10,
-    fontWeight: "400",
+    fontWeight: '400',
   },
 });
 
