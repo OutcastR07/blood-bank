@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   Image,
   StatusBar,
@@ -8,6 +8,7 @@ import {
   View,
   ScrollView,
 } from 'react-native';
+import ContextStore from '../Context/ContextStore';
 
 const bloodBankData = [
   'Hospital X',
@@ -22,6 +23,7 @@ const bloodBankData = [
 ];
 
 const HospitalsPage = ({ navigation }) => {
+  const {contextStore, setContextStore} = useContext(ContextStore)
   const chunkedData = (data, size) => {
     const chunkedArr = [];
     for (let i = 0; i < data.length; i += size) {
@@ -30,8 +32,7 @@ const HospitalsPage = ({ navigation }) => {
     return chunkedArr;
   };
 
-  const chunkedBloodBankData = chunkedData(bloodBankData, 3);
-
+  const chunkedHospitalData = chunkedData(contextStore.hospitals, 3);
   return (
     <View style={styles.container}>
       <StatusBar barStyle='dark-content' backgroundColor='white' />
@@ -52,14 +53,16 @@ const HospitalsPage = ({ navigation }) => {
         </TouchableOpacity>
       </View>
       <ScrollView>
-        {chunkedBloodBankData.map((row, rowIndex) => (
+        {chunkedHospitalData.map((row, rowIndex) => (
           <View key={rowIndex} style={styles.cardContainer}>
             {row.map((hospital, index) => (
               <TouchableOpacity
                 key={index}
                 style={styles.eachCard}
                 onPress={() => {
-                  navigation.navigate('HospitalDetailPage');
+                  navigation.navigate('HospitalDetailPage', {
+                    hospital
+                  });
                 }}>
                 <View style={styles.card}>
                   <Image
@@ -69,10 +72,10 @@ const HospitalsPage = ({ navigation }) => {
                       borderRadius: 4,
                     }}
                     source={{
-                      uri: `https://upload.wikimedia.org/wikipedia/commons/8/88/Hospital-de-Bellvitge.jpg`,
+                      uri: hospital.imgUri,
                     }}></Image>
                 </View>
-                <Text style={styles.cardText}>{hospital}</Text>
+                <Text style={styles.cardText}>{hospital.name}</Text>
               </TouchableOpacity>
             ))}
           </View>

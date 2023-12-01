@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   Image,
   StatusBar,
@@ -7,8 +7,10 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import ContextStore from '../Context/ContextStore';
 
 const Settings = ({ navigation }) => {
+  const {contextStore, setContextStore} = useContext(ContextStore)
   return (
     <View style={styles.container}>
       <StatusBar barStyle='dark-content' backgroundColor='white' />
@@ -21,15 +23,15 @@ const Settings = ({ navigation }) => {
         style={styles.userCard}>
         <View style={styles.circularImageContainer}>
           <Image
-            source={require('../images/interface-user-single-male.png')}
+            source={{uri: contextStore.user.imgUri}}
             style={styles.mainImage}
           />
         </View>
 
         <View style={styles.userInfo}>
-          <Text style={styles.userName}>Xabin Jannat Chowdhury</Text>
-          <Text style={styles.userNumber}>+880 1883947283</Text>
-          <Text style={styles.userEmail}>intesarhasan98@gmail.com</Text>
+          <Text style={styles.userName}>{contextStore.user.name}</Text>
+          <Text style={styles.userNumber}>+880 {contextStore.user.phoneNumber}</Text>
+          <Text style={styles.userEmail}>{contextStore.user.email}</Text>
         </View>
 
         <View style={styles.nextIcon}>

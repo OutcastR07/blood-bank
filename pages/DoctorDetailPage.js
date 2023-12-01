@@ -11,7 +11,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 // import * as Linking from 'expo-linking';
 // import ContextStore from '../Context/ContextStore';
 import { StyleSheet, Dimensions } from 'react-native';
-
+import * as Linking from 'expo-linking';
+import { createMapsUrl } from '../utils/mapsUtils';
 const Item = ({ item }) => {
   return (
     <View
@@ -45,10 +46,11 @@ const Item = ({ item }) => {
   );
 };
 
-const DoctorDetailPage = () => {
+const DoctorDetailPage = ({route}) => {
   const width = Dimensions.get('window').width;
   const height = Dimensions.get('window').height;
   let itemData = [1, 2, 3, 4, 5];
+  const {doctor} = route.params
   return (
     <SafeAreaView
       style={{
@@ -71,7 +73,7 @@ const DoctorDetailPage = () => {
               borderRadius: 4,
             }}
             source={{
-              uri: `https://upload.wikimedia.org/wikipedia/commons/8/88/Hospital-de-Bellvitge.jpg`,
+              uri: doctor.imgUri,
             }}></Image>
           <Text
             style={{
@@ -87,7 +89,7 @@ const DoctorDetailPage = () => {
               color: '#fff',
               fontWeight: 'bold',
             }}>
-            Kidney Specialist
+            {doctor.fields.map(field => `${field} `)}
           </Text>
         </View>
         <Text
@@ -97,12 +99,10 @@ const DoctorDetailPage = () => {
             paddingHorizontal: 20,
             paddingTop: 20,
           }}>
-          Dr. Xabina Chowdhury
+          {doctor.name}
         </Text>
         <Text style={{ fontSize: 16, paddingHorizontal: 20 }}>
-          Lorem ipsum dolor sit amet lorem, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut lab et dolore magna aliqua. Ut enim ad
-          minim
+          {doctor.description}
         </Text>
         <View
           style={{
@@ -114,27 +114,7 @@ const DoctorDetailPage = () => {
             padding: 20,
             flexWrap: 'wrap',
           }}>
-          <View
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              marginVertical: 20,
-            }}>
-            <View
-              style={{
-                backgroundColor: '#EBEDFF',
-                height: 60,
-                width: 60,
-                borderRadius: 15,
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}></View>
-            <Text style={{ width: 100, marginHorizontal: 10 }}>
-              MBBS, BCS (Health), DDV (SKIN & VD, BSMMU)
-            </Text>
-          </View>
+
           <View
             style={{
               display: 'flex',
@@ -152,51 +132,13 @@ const DoctorDetailPage = () => {
                 alignItems: 'center',
               }}></View>
             <Text style={{ width: 100, marginHorizontal: 10 }}>
-              MBBS, BCS (Health), DDV (SKIN & VD, BSMMU)
-            </Text>
-          </View>
-          <View
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-            }}>
-            <View
-              style={{
-                backgroundColor: '#EBEDFF',
-                height: 60,
-                width: 60,
-                borderRadius: 15,
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}></View>
-            <Text style={{ width: 100, marginHorizontal: 10 }}>
-              MBBS, BCS (Health), DDV (SKIN & VD, BSMMU)
-            </Text>
-          </View>
-          <View
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-            }}>
-            <View
-              style={{
-                backgroundColor: '#EBEDFF',
-                height: 60,
-                width: 60,
-                borderRadius: 15,
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}></View>
-            <Text style={{ width: 100, marginHorizontal: 10 }}>
-              MBBS, BCS (Health), DDV (SKIN & VD, BSMMU)
+              {doctor.degrees.map(degree => `${degree}, `)}
             </Text>
           </View>
         </View>
-        <Text
+        {doctor.chambers.map(chamber => (
+          <>
+                  <Text
           style={{
             fontSize: 25,
             fontWeight: '500',
@@ -212,7 +154,7 @@ const DoctorDetailPage = () => {
             paddingHorizontal: 20,
             paddingVertical: 0,
           }}>
-          Labaid Diagnostic Malibagh
+          {chamber.name}
         </Text>
         <Text
           style={{
@@ -227,8 +169,11 @@ const DoctorDetailPage = () => {
             }}>
             Address:
           </Text>{' '}
-          House#11, Road#11, Sector#11, Uttara, Dhaka-1230
+          {chamber.address}
         </Text>
+        <TouchableOpacity onPress={() => {
+          Linking.openURL(createMapsUrl(chamber.address))
+        }}>
         <Text
           style={{
             fontSize: 16,
@@ -238,6 +183,7 @@ const DoctorDetailPage = () => {
           }}>
           View in Gooogle Maps
         </Text>
+        </TouchableOpacity>
         <Text
           style={{
             marginTop: 20,
@@ -255,14 +201,16 @@ const DoctorDetailPage = () => {
             width: '90%',
             backgroundColor: '#a0a0a0',
           }}></View>
-
-        <FlatList
+<Text style={{ textTransform: 'capitalize', fontSize: 24 }}>
+        {chamber.visitingHour}
+      </Text>
+        {/* <FlatList
           contentContainerStyle={{ width: '100%', marginTop: 7 }}
           data={itemData}
           numColumns={2}
           renderItem={Item}
           keyExtractor={(item, index) => index}
-        />
+        /> */}
         <TouchableOpacity
           style={{
             marginVertical: 20,
@@ -284,6 +232,8 @@ const DoctorDetailPage = () => {
             Make an Appointment
           </Text>
         </TouchableOpacity>
+          </>
+        ))}
       </ScrollView>
     </SafeAreaView>
   );

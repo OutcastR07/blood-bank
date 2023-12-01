@@ -1,14 +1,31 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import {
   StatusBar,
   StyleSheet,
   Text,
   TextInput,
+  ToastAndroid,
   TouchableOpacity,
   View,
 } from 'react-native';
+import dispatch from '../dispatch/dispatch';
+import actions from '../dispatch/actions';
+import ContextStore from '../Context/ContextStore';
 
 const LoginPage = ({ navigation }) => {
+  const {contextStore,setContextStore} = useContext(ContextStore)
+  const onClickLogin = async () => {
+    const regex = /^(13|14|15|16|17|18|19)\d{8}$/;
+    if(!regex.test(phoneNumber)){
+      return ToastAndroid.show("Please Input Valid Bangladeshi Phonenumber")
+    }
+    await dispatch(actions.requestVerification, {}, {phoneNumber: "0" + phoneNumber})
+    navigation.reset({
+      index: 0,
+      routes: [{name: "RequestVerificationCode", params: {phoneNumber: "0" + phoneNumber}}]
+    })
+  }
+  const [phoneNumber, setPhoneNumber] = useState("")
   return (
     <View style={styles.container}>
       <StatusBar barStyle='dark-content' backgroundColor='white' />
@@ -20,16 +37,25 @@ const LoginPage = ({ navigation }) => {
         <Text style={styles.enterText}>Enter your phone number</Text>
         <View style={styles.phoneNumberInputContainer}>
           <TextInput style={styles.countryCodeInput} value={'+880'}></TextInput>
-          <TextInput style={styles.phoneNumberInput}></TextInput>
+          <TextInput style={styles.phoneNumberInput} keyboardType={"numeric"} value={phoneNumber} onChangeText={(text) => {
+            setPhoneNumber(text)
+          }}></TextInput>
         </View>
       </View>
 
       <TouchableOpacity
         style={styles.updateButton}
         onPress={() => {
-          navigation.navigate('RequestVerificationCode');
+          onClickLogin()
         }}>
         <Text style={styles.updateText}>Request Verification Code</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.updateButton}
+        onPress={() => {
+          navigation.navigate('CreateAccountPage');
+        }}>
+        <Text style={styles.updateText}>Sign Up</Text>
       </TouchableOpacity>
     </View>
   );

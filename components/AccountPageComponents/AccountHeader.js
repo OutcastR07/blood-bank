@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
+import ContextStore from "../../Context/ContextStore";
+import dispatch from "../../dispatch/dispatch";
+import actions from "../../dispatch/actions";
 
 const AccountHeader = () => {
+  const {contextStore, setContextStore} = useContext(ContextStore)
+  const [location, setLocation]  = useState({})
+  useEffect(() => {
+    (async () => {
+      const location = await dispatch(actions.detailLocation, {}, {...contextStore.user.location.coords}, contextStore.token)
+      console.log(location)
+      setLocation(location)
+    })()
+  },[])
   return (
     <View style={styles.container}>
       <View style={styles.accountInfo}>
-        <Text style={styles.name}>Xabina Khairun Nissa</Text>
-        <Text style={styles.address}>Mohakhali DOHS, Dhaka</Text>
+        <Text style={styles.name}>{contextStore.user.name}</Text>
+        <Text style={styles.address}>{location.formatted_address}</Text>
         <Text style={styles.age}>
           Age: <Text style={styles.info}>25</Text>
         </Text>
@@ -17,7 +29,7 @@ const AccountHeader = () => {
       <View style={styles.circularImageContainer}>
         <View style={styles.circularImage}>
           <Image
-            source={require("../../images/interface-user-single-male.png")}
+            source={{uri: contextStore.user.imgUri}}
             style={styles.image}
           />
         </View>

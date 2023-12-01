@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
+import ContextStore from "../../Context/ContextStore";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const AccountInfoHeader = () => {
+  const {contextStore, setContextStore} = useContext(ContextStore)
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Account Info</Text>
@@ -9,17 +12,19 @@ const AccountInfoHeader = () => {
       <View style={styles.circularImageContainer}>
         <View style={styles.circularImage}>
           <Image
-            source={require("../../images/interface-user-single-male.png")}
+            source={{uri: contextStore.user.imgUri}}
             style={styles.mainImage}
           />
         </View>
         <View style={styles.smallImageContainer}>
+          <TouchableOpacity>
           <View style={styles.smallImageWrapper}>
             <Image
               source={require("../../images/edit.png")}
               style={styles.smallImage}
             />
           </View>
+          </TouchableOpacity>
         </View>
       </View>
     </View>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   Image,
   StatusBar,
@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import ContextStore from '../Context/ContextStore';
 
 const bloodBankData = [
   'Hospital X',
@@ -21,6 +22,7 @@ const bloodBankData = [
 ];
 
 const BloodBanksPage = ({ navigation }) => {
+  const {contextStore, setContextStore} = useContext(ContextStore)
   const chunkedData = (data, size) => {
     const chunkedArr = [];
     for (let i = 0; i < data.length; i += size) {
@@ -29,7 +31,7 @@ const BloodBanksPage = ({ navigation }) => {
     return chunkedArr;
   };
 
-  const chunkedBloodBankData = chunkedData(bloodBankData, 3);
+  const chunkedBloodBankData = chunkedData(contextStore.bloodBanks, 3);
 
   return (
     <View style={styles.container}>
@@ -53,12 +55,14 @@ const BloodBanksPage = ({ navigation }) => {
 
       {chunkedBloodBankData.map((row, rowIndex) => (
         <View key={rowIndex} style={styles.cardContainer}>
-          {row.map((hospital, index) => (
+          {row.map((bloodBank, index) => (
             <TouchableOpacity
               key={index}
               style={styles.eachCard}
               onPress={() => {
-                navigation.navigate('BloodBankDetailPage');
+                navigation.navigate('BloodBankDetailPage', {
+                  bloodBank
+                });
               }}>
               <View style={styles.card}>
                 <Image
@@ -68,10 +72,10 @@ const BloodBanksPage = ({ navigation }) => {
                     borderRadius: 4,
                   }}
                   source={{
-                    uri: `https://upload.wikimedia.org/wikipedia/commons/8/88/Hospital-de-Bellvitge.jpg`,
+                    uri: bloodBank.imgUri,
                   }}></Image>
               </View>
-              <Text style={styles.cardText}>{hospital}</Text>
+              <Text style={styles.cardText}>{bloodBank.name}</Text>
             </TouchableOpacity>
           ))}
         </View>

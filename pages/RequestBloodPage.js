@@ -9,11 +9,31 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-
+import RNDateTimePicker from '@react-native-community/datetimepicker';
+import { formatDate } from '../utils/dateUtils';
 const RequestBloodPage = () => {
   const [activeBloodGroup, setActiveBloodGroup] = useState(null);
   const [activePriority, setActivePriority] = useState(null);
-
+  const [formData, setFormData] = useState({
+    age: "",
+    patientName: "",
+    numberOfBagsNeeded: "",
+    location: "",
+    reason: ""
+  })
+  const [contact, setContact] = useState({
+    name: "",
+    email: "",
+    mobileNo: "",
+    date: new Date()
+  })
+  const onChangeFormData = (fieldName, text) => {
+    setFormData({...formData, [fieldName]: text})
+  }
+  const onChangeContact = (fieldName, text) => {
+    setContact({...contact, [fieldName]: text})
+  }
+  const [showDate, setShowDate] = useState(false)
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -26,32 +46,31 @@ const RequestBloodPage = () => {
             style={styles.patientInput}
             placeholder='Name...'
             placeholderTextColor='#777'
+            value={formData.patientName}
+            onChangeText={(text) => {
+              onChangeFormData("patientName", text)
+            }}
           />
-          <TouchableOpacity style={styles.selectAgeButton}>
-            <Text style={styles.selectAgeText}>Select Age</Text>
-            <Image
-              source={require('../images/interface-arrows-button-down.png')}
-              style={styles.dropdownIcon}
-            />
-          </TouchableOpacity>
+          <TextInput
+                    style={styles.input}
+                    placeholder="Age"
+                    placeholderTextColor="#777"
+                    keyboardType={"numeric"}
+                    value={formData.age}
+                    onChangeText={(text) => {
+                        onChangeFormData( "age", text)
+                    }}
+                />
         </View>
-
-        <View style={styles.addPictureButton}>
-          <Text style={styles.addPicture}>Add Pictures</Text>
-        </View>
-
-        <View style={styles.cardContainer}>
-          <View style={styles.card}></View>
-          <View style={styles.card}></View>
-          <View style={styles.card}></View>
-          <View style={styles.card}></View>
-        </View>
-
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.input}
             placeholder='Reasoning for needing blood...'
             placeholderTextColor='#777'
+            value={formData.reason}
+            onChangeText={(text) => {
+              onChangeFormData("reason", text)
+            }}
           />
         </View>
 
@@ -114,6 +133,11 @@ const RequestBloodPage = () => {
             style={styles.input}
             placeholder='Number of bags required...'
             placeholderTextColor='#777'
+            value={formData.numberOfBagsNeeded}
+            keyboardType='numeric'
+            onChangeText={(text) => {
+              onChangeFormData("numberOfBagsNeeded", text)
+            }}
           />
         </View>
 
@@ -122,6 +146,10 @@ const RequestBloodPage = () => {
             style={styles.input}
             placeholder='Location'
             placeholderTextColor='#777'
+            value={formData.location}
+            onChangeText={(text) => {
+              onChangeFormData("location", text)
+            }}
           />
         </View>
 
@@ -132,6 +160,10 @@ const RequestBloodPage = () => {
               style={styles.input}
               placeholder='Contact name...'
               placeholderTextColor='#777'
+              value={contact.name}
+              onChangeText={(text) => {
+                onChangeContact("name", text)
+              }}
             />
           </View>
           <View style={styles.inputContainer}>
@@ -139,6 +171,11 @@ const RequestBloodPage = () => {
               style={styles.input}
               placeholder='Mobile Number...'
               placeholderTextColor='#777'
+              keyboardType={"numeric"}
+              value={contact.mobileNo}
+              onChangeText={(text) => {
+                onChangeContact("mobileNo", text)
+              }}
             />
           </View>
           <View style={styles.inputContainer}>
@@ -146,18 +183,30 @@ const RequestBloodPage = () => {
               style={styles.input}
               placeholder='Email address'
               placeholderTextColor='#777'
+              value={contact.email}
+              onChangeText={(text) => {
+                onChangeContact("email", text)
+              }}
             />
           </View>
+          {showDate && <RNDateTimePicker value={contact.date} minimumDate={new Date()} display='spinner' onChange={(e) => {
+            setShowDate(false)
+            if(e.type === "set"){
+              setContact({...contact, date: new Date(e.nativeEvent.timestamp)})
+            }
 
+          }}/>}
           <View style={styles.dateContainer}>
             <View style={styles.dateButton}>
               <Text style={styles.dateText}>
                 Date when needed (Approximate)
               </Text>
             </View>
+            <TouchableOpacity onPress={() => {setShowDate(true)}}>
             <View style={styles.calendarDateContainer}>
-              <Text style={styles.calendarDate}>09/03/2023</Text>
+              <Text style={styles.calendarDate}>{formatDate(contact.date)}</Text>
             </View>
+            </TouchableOpacity>
           </View>
         </View>
 

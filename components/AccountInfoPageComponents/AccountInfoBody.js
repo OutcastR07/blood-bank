@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import ContextStore from '../../Context/ContextStore';
 
 const AccountInfoBody = ({ navigation }) => {
+  const {contextStore, setContextStore} = useContext(ContextStore)
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Basic info</Text>
@@ -11,7 +13,7 @@ const AccountInfoBody = ({ navigation }) => {
           navigation.navigate('EditNamePage');
         }}>
         <Text style={styles.infoTitle}>Name</Text>
-        <Text>Xabin Jannat Chowdhury</Text>
+        <Text>{contextStore.user.name}</Text>
         <View style={styles.hr} />
       </TouchableOpacity>
       <TouchableOpacity
@@ -20,7 +22,7 @@ const AccountInfoBody = ({ navigation }) => {
           navigation.navigate('EditPhoneNumberPage');
         }}>
         <Text style={styles.infoTitle}>Phone number</Text>
-        <Text>+880 1883947283</Text>
+        <Text>+880 {contextStore.user.phoneNumber}</Text>
         <View style={styles.hr} />
       </TouchableOpacity>
       <TouchableOpacity
@@ -30,7 +32,7 @@ const AccountInfoBody = ({ navigation }) => {
         }}>
         <Text style={styles.infoTitle}>Email</Text>
         <View style={styles.emailInfo}>
-          <Text>intesarhasan98@gmail.com</Text>
+          <Text>{contextStore.user.email}</Text>
           <Image
             source={require('../../images/warning.png')}
             style={styles.emailIcon}

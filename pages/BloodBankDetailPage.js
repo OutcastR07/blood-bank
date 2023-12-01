@@ -11,14 +11,18 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { StyleSheet, Dimensions } from 'react-native';
+import { createMapsUrl } from '../utils/mapsUtils';
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
 const Item = ({ item }) => {
   return (
     <View style={bloodBankDetailStyle.serviceCard}>
-      <Text style={{ fontSize: 12 }}>Saturday</Text>
-      <Text style={bloodBankDetailStyle.smallGreenText}>Open 24/7</Text>
+      <Text style={{ textTransform: 'capitalize', fontSize: 12 }}>
+        {item.text}
+      </Text>
+
+      <Text style={{fontSize: 12, color: item.color}}>{item.time}</Text>
     </View>
   );
 };
@@ -40,13 +44,14 @@ const BloodBagCapacity = ({ item }) => {
 const BloodBankDetailPage = ({ navigate, route }) => {
   // const { contextStore, setContextStore } = useContext(ContextStore);
   // const { id } = route.params;
-  const [bloodBank, setBloodBank] = useState({
-    name: '',
-    location: '',
-    contactInfo: '',
-    inventory: {},
-    imgUri: '',
-  });
+  const {bloodBank} = route.params
+  useEffect(() => {
+    const vBloodBagdata = []
+    for (let type of Object.keys(bloodBank.inventory)){
+      vBloodBagdata.push({type, capacity: bloodBank.inventory[type]})
+    }
+    setBloodBagData(vBloodBagdata)
+  },[bloodBank])
   // useEffect(() => {
   //   (async () => {
   //     contextStore.setShowSpinner(true);
@@ -66,10 +71,7 @@ const BloodBankDetailPage = ({ navigate, route }) => {
   //   })();
   // }, [id]);
   const onClickViewOnGoogleMap = () => {
-    // let apiBaseUrl =
-    //   'https://www.google.com/maps/search/?' +
-    //   generateSearchString({ api: 1, query: bloodBank.location });
-    // Linking.openURL(apiBaseUrl);
+    Linking.openURL(createMapsUrl(bloodBank.location))
   };
   let itemData = [1, 2, 3, 4, 5, 6];
   const [bloodBagData, setBloodBagData] = useState([
@@ -82,6 +84,19 @@ const BloodBankDetailPage = ({ navigate, route }) => {
     { type: 'O+', capacity: 21 },
     { type: 'O-', capacity: 21 },
   ]);
+  const [serviceHours, setServiceHours] = useState([])
+  useEffect(() => {
+    let vServiceHours = []
+    for(let day of Object.keys(bloodBank.serviceHours)){
+      vServiceHours.push({
+        text: day,
+        time: !bloodBank.serviceHours.disabled ? `${bloodBank.serviceHours[day].from} - ${bloodBank.serviceHours[day].to}` : "Closed",
+        color: !bloodBank.serviceHours.disabled ? "green" : "red"
+      })
+    }
+    setServiceHours(vServiceHours)
+  },[bloodBank])
+  
   return (
     <SafeAreaView
       style={{
@@ -91,7 +106,7 @@ const BloodBankDetailPage = ({ navigate, route }) => {
       }}>
       <ScrollView>
         <Text style={bloodBankDetailStyle.hospitalName}>
-          Quantam Blood Bank
+          {bloodBank.name}
         </Text>
         <View style={bloodBankDetailStyle.coverImage}>
           <Image
@@ -101,7 +116,7 @@ const BloodBankDetailPage = ({ navigate, route }) => {
               borderRadius: 4,
             }}
             source={{
-              uri: `https://upload.wikimedia.org/wikipedia/commons/8/88/Hospital-de-Bellvitge.jpg`,
+              uri: bloodBank.imgUri,
             }}></Image>
         </View>
         <View style={{ padding: 20, marginBottom: 0 }}>
@@ -112,7 +127,7 @@ const BloodBankDetailPage = ({ navigate, route }) => {
                 source={require('../images/travel-map-location-pin.png')}
               />
               <Text style={bloodBankDetailStyle.card__description}>
-                <Text>Road 18, Plot 81, Moghbazar, Dhaka - 1217</Text>
+                <Text>{bloodBank.location}</Text>
                 <TouchableOpacity onPress={onClickViewOnGoogleMap}>
                   <Text
                     style={{
@@ -130,7 +145,7 @@ const BloodBankDetailPage = ({ navigate, route }) => {
                 source={require('../images/contact-book.png')}
               />
               <Text style={bloodBankDetailStyle.card__description}>
-                01914001234
+                {bloodBank.contactInfo.contactNo}
               </Text>
             </View>
             <View style={bloodBankDetailStyle.card_section}>
@@ -139,7 +154,7 @@ const BloodBankDetailPage = ({ navigate, route }) => {
                 source={require('../images/mail-send-email.png')}
               />
               <Text style={bloodBankDetailStyle.card__description}>
-                bloodBank@quantum.com
+                {bloodBank.contactInfo.email}
               </Text>
             </View>
           </View>
@@ -148,7 +163,7 @@ const BloodBankDetailPage = ({ navigate, route }) => {
           <Text style={bloodBankDetailStyle.greenText}>Open 24 hours</Text>
           <FlatList
             contentContainerStyle={bloodBankDetailStyle.servicesList}
-            data={itemData}
+            data={serviceHours}
             numColumns={2}
             renderItem={Item}
             keyExtractor={(item, index) => index}

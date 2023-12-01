@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { ScrollView, StatusBar, StyleSheet, View } from 'react-native';
 import CrowdfundingComponent from '../components/HomePageComponents/CrowdFundingComponent';
 import JumpIntoServices from '../components/HomePageComponents/JumpIntoServices';
@@ -8,25 +8,25 @@ import LoggedOutUser from '../components/HomePageComponents/LoggedOutUser';
 import NearbyHospitals from '../components/HomePageComponents/NearbyHospitals';
 import SearchBar from '../components/HomePageComponents/SearchBar';
 import WaysToUseBloodBank from '../components/HomePageComponents/WaysToUseBloodBank';
+import ContextStore from '../Context/ContextStore';
 
 const HomePage = ({ navigation }) => {
   const [isLocationEnabled, setLocationEnabled] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const {contextStore, setContextStore} = useContext(ContextStore)
   useEffect(() => {
     const checkLocationEnabled = () => {
       const isEnabled = true;
       setLocationEnabled(isEnabled);
     };
-
     checkLocationEnabled();
   }, []);
 
   useEffect(() => {
-    const userAuthenticated = false;
-    setIsLoggedIn(userAuthenticated);
-  }, []);
-
+    console.log(contextStore.loggedIn)
+    setIsLoggedIn(contextStore.loggedIn);
+  }, [contextStore.loggedIn]);
+  console.log(contextStore.token)
   return (
     <ScrollView>
       <View style={styles.container}>

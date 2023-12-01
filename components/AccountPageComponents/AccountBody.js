@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { removeToken } from '../../utils/storageUtils';
+import ContextStore from '../../Context/ContextStore';
 
 const AccountBody = ({ navigation }) => {
+  const {contextStore, setContextStore} = useContext(ContextStore)
   return (
     <View>
       <View style={styles.container}>
@@ -75,7 +78,12 @@ const AccountBody = ({ navigation }) => {
             source={require('../../images/exit.png')}
             style={styles.verticalImage}
           />
-          <Text style={styles.verticalText}>Logout</Text>
+          <Text style={styles.verticalText}
+            onPress={async() => {
+              await removeToken()
+              setContextStore({...contextStore, token: "", loggedIn: false})
+            }}
+          >Logout</Text>
         </View>
       </View>
       <Text style={styles.version}>v1.002</Text>

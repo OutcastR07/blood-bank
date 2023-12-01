@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import {
   StatusBar,
   StyleSheet,
@@ -7,8 +7,21 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import ContextStore from '../Context/ContextStore';
+import dispatch from '../dispatch/dispatch';
+import actions from '../dispatch/actions';
 
 const EditEmailAddressPage = ({ navigation }) => {
+  const {contextStore, setContextStore} = useContext(ContextStore)
+  const [email, setEmail] = useState(contextStore.user.email)
+  const onPressVerify = async() => {
+    const response = await dispatch(actions.editPersonalData, {fieldName: "email"}, {email}, contextStore.token)
+    if(!response.error){
+      setContextStore({...contextStore, user: response})
+      navigation.navigate("AccountInfoPage")
+    }
+    
+  }
   return (
     <View style={styles.container}>
       <StatusBar barStyle='dark-content' backgroundColor='white' />
@@ -25,7 +38,9 @@ const EditEmailAddressPage = ({ navigation }) => {
 
       <View style={styles.inputContainer}>
         <Text style={styles.enterText}>Enter email address</Text>
-        <TextInput style={styles.input}></TextInput>
+        <TextInput style={styles.input} value={email} onChangeText={(text) => {
+          setEmail(text)
+        }}></TextInput>
         <Text style={styles.confirmationText}>
           An email has been sent to this address. Click on the link to verify
           the email address.
@@ -33,7 +48,7 @@ const EditEmailAddressPage = ({ navigation }) => {
       </View>
 
       <TouchableOpacity style={styles.verifyButton}>
-        <Text style={styles.verifyText}>Verify</Text>
+        <Text style={styles.verifyText} onPress={onPressVerify}>Verify</Text>
       </TouchableOpacity>
     </View>
   );

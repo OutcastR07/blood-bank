@@ -1,7 +1,21 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
+import ContextStore from '../../Context/ContextStore';
 
 const NearbyHospitals = ({ navigation }) => {
+  const {contextStore, setContextStore} = useContext(ContextStore)
+  const [rows, setRows] = useState([])
+  useEffect(() => {
+    const vRows = []
+    for(let i =0; i<contextStore.hospitals.length; i+=4){
+      const columns = []
+      for(let j = i; j < j+4 && j<contextStore.hospitals.length; j+=1){
+        columns.push(contextStore.hospitals[j])
+      }
+      vRows.push(columns)
+    }
+    setRows(vRows)
+  },[contextStore.hospitals])
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -14,29 +28,26 @@ const NearbyHospitals = ({ navigation }) => {
         </TouchableOpacity>
       </View>
       <View style={styles.cardContainer}>
+      {rows.map(row => (
         <View style={styles.row}>
-          <HospitalCard name='Hospital 1' navigation={navigation} />
-          <HospitalCard name='Hospital 2' navigation={navigation} />
-          <HospitalCard name='Hospital 3' navigation={navigation} />
-          <HospitalCard name='Hospital 4' navigation={navigation} />
+          {row.map(hospital => (
+            <HospitalCard name={hospital.name} hospital={hospital} navigation={navigation} />
+          ))}
         </View>
-        <View style={styles.row}>
-          <HospitalCard name='Hospital 5' navigation={navigation} />
-          <HospitalCard name='Hospital 6' navigation={navigation} />
-          <HospitalCard name='Hospital 7' navigation={navigation} />
-          <HospitalCard name='Hospital 8' navigation={navigation} />
-        </View>
+      ))}
       </View>
     </View>
   );
 };
 
-const HospitalCard = ({ name, color, navigation }) => {
+const HospitalCard = ({ name, color, navigation, hospital }) => {
   return (
     <TouchableOpacity
       style={styles.hospitalCardContainer}
       onPress={() => {
-        navigation.navigate('HospitalDetailPage');
+        navigation.navigate('HospitalDetailPage', {
+          hospital
+        });
       }}>
       <View style={[styles.card, { backgroundColor: 'black' }]}>
         <Image
@@ -46,7 +57,7 @@ const HospitalCard = ({ name, color, navigation }) => {
             borderRadius: 4,
           }}
           source={{
-            uri: `https://upload.wikimedia.org/wikipedia/commons/8/88/Hospital-de-Bellvitge.jpg`,
+            uri: `${hospital.imgUri}`,
           }}></Image>
       </View>
       <Text style={styles.hospitalName}>{name}</Text>

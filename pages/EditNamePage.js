@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import {
   StatusBar,
   StyleSheet,
@@ -7,8 +7,21 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import ContextStore from '../Context/ContextStore';
+import dispatch from '../dispatch/dispatch';
+import actions from '../dispatch/actions';
 
 const EditNamePage = ({ navigation }) => {
+  const {contextStore, setContextStore} = useContext(ContextStore)
+  const [name, setName] = useState(contextStore.user.name)
+  const onPressUpdate = async () => {
+    const response = await dispatch(actions.editPersonalData, {fieldName: "name"}, {name}, contextStore.token)
+    console.log(response)
+    if(!response.error){
+      setContextStore({...contextStore, user: response})
+      navigation.navigate("AccountInfoPage")
+    }
+  }
   return (
     <View style={styles.container}>
       <StatusBar barStyle='dark-content' backgroundColor='white' />
@@ -25,11 +38,13 @@ const EditNamePage = ({ navigation }) => {
 
       <View style={styles.inputContainer}>
         <Text style={styles.enterText}>Full Name</Text>
-        <TextInput style={styles.input}></TextInput>
+        <TextInput style={styles.input} value={name} onChangeText={(text) => {
+          setName(text)
+        }}></TextInput>
       </View>
 
       <TouchableOpacity style={styles.updateButton}>
-        <Text style={styles.updateText}>Update</Text>
+        <Text style={styles.updateText} onPress={onPressUpdate}>Update</Text>
       </TouchableOpacity>
     </View>
   );

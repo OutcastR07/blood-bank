@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   View,
   Text,
@@ -10,24 +10,26 @@ import {
   Dimensions,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import ContextStore from '../Context/ContextStore';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
 const Item = (doctor, navigation) => {
+  console.log(doctor)
   return (
     <TouchableOpacity
       style={reownedDoctorsListStyle.cardView}
       onPress={() => {
         navigation.navigate('DoctorDetailScreen', {
-          id: doctor._id,
+          doctor
         });
       }}>
       <View style={reownedDoctorsListStyle.cardView__Left}>
         <Image
           style={{ maxWidth: '100%', height: '100%', borderRadius: 4 }}
           source={{
-            uri: 'https://img.freepik.com/free-photo/attractive-young-male-nutriologist-lab-coat-smiling-against-white-background_662251-2960.jpg',
+            uri: doctor.imgUri,
           }}></Image>
       </View>
       <View style={reownedDoctorsListStyle.cardView__Right}>
@@ -35,7 +37,7 @@ const Item = (doctor, navigation) => {
           style={reownedDoctorsListStyle.cardView__doctorName}
           ellipsizeMode='tail'
           numberOfLines={1}>
-          Dr. Syed Mahmud Mahi
+          {doctor.name}
         </Text>
         <Text
           ellipsizeMode='tail'
@@ -47,11 +49,7 @@ const Item = (doctor, navigation) => {
           ellipsizeMode='tail'
           numberOfLines={2}
           style={reownedDoctorsListStyle.cardView__details}>
-          Lorem Ipsum has been the industry's standard dummy text ever since the
-          1500s, when an unknown printer took a galley of type and scrambled it
-          to make a type specimen book. It has survived not only five centuries,
-          but also the leap into electronic typesetting, remaining essentially
-          unchanged.
+          {doctor.description}
         </Text>
       </View>
     </TouchableOpacity>
@@ -59,6 +57,7 @@ const Item = (doctor, navigation) => {
 };
 
 const DoctorsPage = ({ navigation, route }) => {
+  const {contextStore, setContextStore} = useContext(ContextStore)
   let itemData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   return (
     <SafeAreaView
@@ -97,7 +96,7 @@ const DoctorsPage = ({ navigation, route }) => {
               contentContainerStyle={
                 reownedDoctorsListStyle.reownedDoctorCardList
               }
-              data={itemData}
+              data={contextStore.doctors}
               numColumns={1}
               renderItem={({ item }) => Item(item, navigation)}
               keyExtractor={(item, index) => index}

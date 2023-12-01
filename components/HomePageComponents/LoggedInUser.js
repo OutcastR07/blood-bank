@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
+import ContextStore from "../../Context/ContextStore";
 
 const LoggedInUser = () => {
+  const {contextStore, setContextStore} = useContext(ContextStore)
   return (
     <View style={styles.cardContainer}>
       <View style={styles.leftContent}>
         <Text style={styles.greeting}>
-          Hi Xu! Tell us how Rantzon can make your life easier
+          Hi {contextStore.user.name}! Tell us how Rantzon can make your life easier
         </Text>
         <Text style={styles.secondaryText}>Text to share with us.</Text>
         <View style={styles.availableContainer}>

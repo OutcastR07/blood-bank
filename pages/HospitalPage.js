@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   FlatList,
   Image,
@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 // import * as Linking from 'expo-linking';
+import * as Linking from 'expo-linking';
 // import ContextStore from '../Context/ContextStore';
 import { StyleSheet, Dimensions } from 'react-native';
 
@@ -16,10 +17,10 @@ const Item = ({ item }) => {
   return (
     <View style={hospitalDetailStyle.serviceCard}>
       <Text style={{ textTransform: 'capitalize', fontSize: 12 }}>
-        Saturday
+        {item.text}
       </Text>
 
-      <Text style={hospitalDetailStyle.greenText}>Open 24/7</Text>
+      <Text style={{fontSize: 12, color: item.color}}>{item.time}</Text>
     </View>
   );
 };
@@ -27,26 +28,7 @@ const Item = ({ item }) => {
 const HospitalDetailPage = ({ navigate, route }) => {
   //   const { contextStore, setContextStore } = useContext(ContextStore);
   //   const { id } = route.params;
-  const [hospital, setHospital] = useState({
-    serviceHours: [{ Sunday: 'Open 24/7' }],
-    facilities: [
-      'Smart Reception and Enquiry desk',
-      'Emergency Service Center',
-      'Patient addmission center for critical',
-      'Beds for ndoor patient cabin, ward, suits.',
-      'Modern diagnostic services facilities',
-      'Internal Pharmacy for quality medicine',
-    ],
-    services: [
-      'Smart Reception and Enquiry desk',
-      'Emergency Service Center',
-      'Patient addmission center for critical',
-      'Beds for ndoor patient cabin, ward, suits.',
-      'Modern diagnostic services facilities',
-      'Internal Pharmacy for quality medicine',
-    ],
-    placeDetails: {},
-  });
+  const {hospital} = route.params
   //   useEffect(() => {
   //     (async () => {
   //       contextStore.setShowSpinner(true);
@@ -58,6 +40,18 @@ const HospitalDetailPage = ({ navigate, route }) => {
   //     })();
   //   }, [id]);
   let itemData = [1, 2, 3, 4, 5, 6, 7];
+  const [serviceHours, setServiceHours] = useState([])
+  useEffect(() => {
+    let vServiceHours = []
+    for(let day of Object.keys(hospital.serviceHours)){
+      vServiceHours.push({
+        text: day,
+        time: !hospital.serviceHours.disabled ? `${hospital.serviceHours[day].from} - ${hospital.serviceHours[day].to}` : "Closed",
+        color: !hospital.serviceHours.disabled ? "green" : "red"
+      })
+    }
+    setServiceHours(vServiceHours)
+  },[hospital])
   return (
     <SafeAreaView
       style={{
@@ -74,12 +68,12 @@ const HospitalDetailPage = ({ navigate, route }) => {
               borderRadius: 4,
             }}
             source={{
-              uri: `https://upload.wikimedia.org/wikipedia/commons/8/88/Hospital-de-Bellvitge.jpg`,
+              uri: hospital.imgUri,
             }}></Image>
         </View>
         <View style={{ padding: 20, marginBottom: 40 }}>
           <Text style={hospitalDetailStyle.hospitalName}>
-            Evercare Hospital Bangladesh
+            {hospital.name}
           </Text>
           <View style={hospitalDetailStyle.card}>
             <View style={hospitalDetailStyle.card_section}>
@@ -89,11 +83,11 @@ const HospitalDetailPage = ({ navigate, route }) => {
               />
               <Text style={hospitalDetailStyle.card__description}>
                 <Text>
-                  Road 18, Plot 21, Bashundhara Residential Area, Dhaka-1229{' '}
+                  {hospital.placeDetails.formatted_address}{' '}
                 </Text>
                 <TouchableOpacity
                   onPress={() => {
-                    // Linking.openURL(hospital.placeDetails.url);
+                    Linking.openURL(hospital.placeDetails.url);
                   }}>
                   <Text
                     style={{
@@ -111,7 +105,7 @@ const HospitalDetailPage = ({ navigate, route }) => {
                 source={require('../images/contact-book.png')}
               />
               <Text style={hospitalDetailStyle.card__description}>
-                01914001234
+                {hospital.contactNo}
               </Text>
             </View>
             <View style={hospitalDetailStyle.card_section}>
@@ -120,7 +114,7 @@ const HospitalDetailPage = ({ navigate, route }) => {
                 source={require('../images/mail-send-email.png')}
               />
               <Text style={hospitalDetailStyle.card__description}>
-                hospital@evercarebd.com
+                {hospital.email}
               </Text>
             </View>
           </View>
@@ -129,7 +123,7 @@ const HospitalDetailPage = ({ navigate, route }) => {
           <Text style={hospitalDetailStyle.greenText}>Open 24 hours</Text>
           <FlatList
             contentContainerStyle={hospitalDetailStyle.servicesList}
-            data={itemData}
+            data={serviceHours}
             numColumns={2}
             renderItem={Item}
             keyExtractor={(item, index) => index}

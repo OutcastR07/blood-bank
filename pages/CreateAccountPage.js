@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
   Image,
+  ScrollView,
   StatusBar,
   StyleSheet,
   Text,
@@ -8,18 +9,73 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-
+import * as ImagePicker from 'expo-image-picker';
+import * as FileSystem from "expo-file-system"
+import dispatch from '../dispatch/dispatch';
+import actions from '../dispatch/actions';
+import ContextStore from '../Context/ContextStore';
+import * as Location from 'expo-location';
 const CreateAccountPage = ({ navigation }) => {
+  const {contextStore, setContextStore} = useContext(ContextStore)
+  const [location, setLocation] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+    })();
+  }, []);
+
+  const [formData,setFormData] = useState({
+    name: "",
+    age: "",
+    email: "",
+    bloodGroup: "",
+    phoneNumber: ""
+  })
+  const [image, setImage] = useState(null);
   const [activeBloodGroup, setActiveBloodGroup] = useState(null);
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+    
+    console.log(result);
+
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
+    }
+  };
+  const onClickSignup = async () => {
+
+    let token = await dispatch(actions.signup, {}, {...formData, location}, )
+    console.log(token)
+    let user = await dispatch(actions.uploadImage, {},image, token)
+    console.log(token, user)
+    setContextStore({...contextStore, token, user})
+    navigation.navigate('RequestVerificationCode');
+  }
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <StatusBar barStyle='dark-content' backgroundColor='white' />
       <Text style={styles.title}>Create an account</Text>
 
       <View style={styles.pictureContainer}>
-        <View style={styles.profilePicture}></View>
+        <View style={styles.profilePicture}>{image && <Image source={{ uri: image }} style={styles.profilePicture} />}</View>
         <View style={styles.profilePictureTextContainer}>
-          <Text style={styles.profilePictureText}>Add a Profile Picture</Text>
+          <TouchableOpacity onPress={pickImage}><Text style={styles.profilePictureText}>Add a Profile Picture</Text></TouchableOpacity>
         </View>
       </View>
 
@@ -30,23 +86,37 @@ const CreateAccountPage = ({ navigation }) => {
           style={styles.patientInput}
           placeholder='Name...'
           placeholderTextColor='#777'
+          value={formData.name}
+          onChangeText={(text) => {
+            setFormData({...formData, name: text})
+          }}
         />
-        <TouchableOpacity style={styles.selectAgeButton}>
-          <Text style={styles.selectAgeText}>Select Age</Text>
-          <Image
-            source={require('../images/interface-arrows-button-down.png')}
-            style={styles.dropdownIcon}
-          />
-        </TouchableOpacity>
+        
       </View>
+      <View style={styles.selectAgeButton}>
+          <TextInput
+          style={styles.patientInput}
+          placeholder='Age..'
+          placeholderTextColor='#777'
+          value={formData.age}
+          keyboardType={"numeric"}
+          onChangeText={(text) => {
+            setFormData({...formData, age: text})
+          }}
+        />
+        </View>
 
       <Text style={styles.subtitle}>Enter your e-mail address</Text>
 
       <View style={styles.inputEmailContainer}>
-        <TextInput
-          style={styles.inputEmail}
-          placeholder='Email'
+      <TextInput
+          style={styles.patientInput}
+          placeholder='Name...'
           placeholderTextColor='#777'
+          value={formData.email}
+          onChangeText={(text) => {
+            setFormData({...formData, email: text})
+          }}
         />
       </View>
 
@@ -62,7 +132,10 @@ const CreateAccountPage = ({ navigation }) => {
               styles.bloodGroupCard,
               activeBloodGroup === bloodType && styles.activeBloodGroupCard,
             ]}
-            onTouchEnd={() => setActiveBloodGroup(bloodType)}>
+            onTouchEnd={() => {
+              setActiveBloodGroup(bloodType)
+              setFormData({...formData, bloodGroup: bloodType})
+            }}>
             <Text
               style={[
                 styles.bloodGroup,
@@ -80,18 +153,20 @@ const CreateAccountPage = ({ navigation }) => {
         <Text style={styles.enterText}>Enter your phone number</Text>
         <View style={styles.phoneNumberInputContainer}>
           <TextInput style={styles.countryCodeInput} value='+880'></TextInput>
-          <TextInput style={styles.phoneNumberInput}></TextInput>
+          <TextInput style={styles.phoneNumberInput} keyboardType={"numeric"} value={formData.phoneNumber} onChangeText={(text) => {
+            setFormData({...formData, phoneNumber: text})
+          }}></TextInput>
         </View>
       </View>
 
       <TouchableOpacity
         style={styles.submitRequestButton}
         onPress={() => {
-          navigation.navigate('RequestVerificationCode');
+          onClickSignup()
         }}>
         <Text style={styles.submitRequestText}>Request verification code</Text>
       </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 };
 

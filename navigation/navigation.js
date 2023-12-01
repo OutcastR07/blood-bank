@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StyleSheet, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -39,6 +39,7 @@ import Settings from '../pages/Settings';
 import EditNamePage from '../pages/EditNamePage';
 import EditPhoneNumberPage from '../pages/EditPhoneNumberPage';
 import EditEmailAddressPage from '../pages/EditEmailAddressPage';
+import ContextStore from '../Context/ContextStore';
 
 const Tabs = createBottomTabNavigator();
 
@@ -123,6 +124,7 @@ function ServicesStackScreen() {
       screenOptions={{
         headerShown: false,
       }}>
+       
       <ServicesStack.Screen name='ServicesPage' component={Services} />
       <ServicesStack.Screen
         name='HospitalDetailPage'
@@ -160,12 +162,25 @@ function ServicesStackScreen() {
 }
 
 function AccountStackScreen() {
+  const {contextStore, setContextStore} = useContext(ContextStore)
   return (
     <AccountStack.Navigator
       screenOptions={{
         headerShown: false,
       }}>
-      <AccountStack.Screen name='AccountPage' component={AccountPage} />
+         {!contextStore.loggedIn && <>
+      <HomeStack.Screen name='LoginPage' component={LoginPage} />
+      <HomeStack.Screen
+        name='RequestVerificationCode'
+        component={NumberVerificationPage}
+      />
+      <HomeStack.Screen
+        name='CreateAccountPage'
+        component={CreateAccountPage}
+      />
+        </>}
+      {contextStore.loggedIn && <>
+        <AccountStack.Screen name='AccountPage' component={AccountPage} />
       <AccountStack.Screen name='ListMessages' component={ListMessages} />
       <AccountStack.Screen name='Messages' component={Messages} />
       <AccountStack.Screen name='SavedItems' component={SavedItems} />
@@ -184,7 +199,7 @@ function AccountStackScreen() {
       <AccountStack.Screen
         name='ContactRequestPage'
         component={ContactRequestPage}
-      />
+      /></>}
     </AccountStack.Navigator>
   );
 }

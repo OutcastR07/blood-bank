@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import {
   StatusBar,
   StyleSheet,
@@ -7,8 +7,20 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import ContextStore from '../Context/ContextStore';
+import dispatch from '../dispatch/dispatch';
+import actions from '../dispatch/actions';
 
 const EditPhoneNumberPage = ({ navigation }) => {
+  const {contextStore, setContextStore} = useContext(ContextStore)
+  const [phoneNumber, setPhoneNumber] = useState(contextStore.user.phoneNumber)
+  const onPressUpdate = async () => {
+    const response = await dispatch(actions.editPersonalData, {fieldName: "phoneNumber"}, {phoneNumber}, contextStore.token)
+    if(!response.error){
+      setContextStore({...contextStore, user: response})
+      navigation.navigate("AccountInfoPage")
+    }
+  }
   return (
     <View style={styles.container}>
       <StatusBar barStyle='dark-content' backgroundColor='white' />
@@ -26,16 +38,18 @@ const EditPhoneNumberPage = ({ navigation }) => {
       <View style={styles.inputContainer}>
         <Text style={styles.enterText}>Change Number</Text>
         <View style={styles.phoneNumberInputContainer}>
-          <TextInput style={styles.countryCodeInput}></TextInput>
-          <TextInput style={styles.phoneNumberInput}></TextInput>
+          <TextInput style={styles.countryCodeInput} value={"+880"} aria-disabled></TextInput>
+          <TextInput style={styles.phoneNumberInput} value={phoneNumber} onChangeText={(text) => {
+            setPhoneNumber(text)
+          }}></TextInput>
         </View>
         <Text style={styles.confirmationText}>
           A 6-digit verification code will be send to this number
         </Text>
       </View>
 
-      <TouchableOpacity style={styles.updateButton}>
-        <Text style={styles.updateText}>Update</Text>
+      <TouchableOpacity style={styles.updateButton} onPress={onPressUpdate}>
+        <Text style={styles.updateText} >Update</Text>
       </TouchableOpacity>
     </View>
   );

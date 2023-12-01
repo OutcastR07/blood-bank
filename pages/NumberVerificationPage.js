@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import {
   StatusBar,
   StyleSheet,
@@ -7,8 +7,14 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import ContextStore from '../Context/ContextStore';
+import dispatch from '../dispatch/dispatch';
+import actions from '../dispatch/actions';
+import { storeToken } from '../utils/storageUtils';
 
-const NumberVerificationPage = () => {
+const NumberVerificationPage = ({navigation, route}) => {
+  const {phoneNumber} = route.params
+  const {contextStore, setContextStore} = useContext(ContextStore)
   const [verificationCode, setVerificationCode] = useState([
     '',
     '',
@@ -28,7 +34,21 @@ const NumberVerificationPage = () => {
       inputRefs.current[index + 1].focus();
     }
   };
-
+  const onClickSubmit = async () => {
+    const response = await dispatch(actions.login, {}, {phoneNumber, otp: verificationCode.join("")})
+    console.log(response)
+    if(!response.error){
+      setContextStore({...contextStore, token: response, loggedIn: true})
+      await storeToken(response)
+      navigation.reset({
+        index: 0,
+        routes: [{
+          name: "HomePage"
+        }]
+      })
+    }
+    
+  }
   return (
     <View style={styles.container}>
       <StatusBar barStyle='dark-content' backgroundColor='white' />
@@ -64,8 +84,10 @@ const NumberVerificationPage = () => {
         <Text style={styles.codeResendText}>Resend code</Text>
       </View>
 
-      <TouchableOpacity style={styles.verifyButton}>
-        <Text style={styles.verifyText}>Verify</Text>
+      <TouchableOpacity style={styles.verifyButton} onPress={() => {
+          onClickSubmit()
+        }}>
+        <Text style={styles.verifyText} >Verify</Text>
       </TouchableOpacity>
     </View>
   );
